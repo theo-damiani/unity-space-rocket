@@ -4,6 +4,7 @@ using UnityEngine;
 
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class AppManager : Singleton<AppManager>
 {
@@ -20,6 +21,7 @@ public class AppManager : Singleton<AppManager>
     [Header("Uniform Motion Variables")]
     [SerializeField, LabelOverride("velocity")] private Vector3Variable UM_velocity;
     [SerializeField, LabelOverride("IsActive")] private BoolVariable UM_isActive;
+    [SerializeField, LabelOverride("IsInteractable")] private GameObject UM_button;
 
     void Start()
     {
@@ -40,7 +42,7 @@ public class AppManager : Singleton<AppManager>
 
     private void DefaultConfigMotion()
     {
-        ConfigMotion(false, true, Vector3.right*5);
+        ConfigMotion(true, true, Vector3.right*5);
     }
 
     public void ConfigMotion(bool isInteractable, bool isActiveAtStart, Vector3 initVelocity)
@@ -54,5 +56,7 @@ public class AppManager : Singleton<AppManager>
     {
         UM_velocity.Value = uniformMotionInitVelocity.Value;
         UM_isActive.Value = uniformMotionIsActiveAtStart.Value;
+        UM_button.SetActive(uniformMotionIsInteractable.Value);
+        UM_button.GetComponent<Toggle>().isOn = uniformMotionIsActiveAtStart.Value;
     }
 }

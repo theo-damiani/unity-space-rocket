@@ -25,6 +25,7 @@ public class MotionManager : MonoBehaviour
 
     void FixedUpdate()
     {
+        rb.velocity = Vector3.zero;
         for (int i = 0; i < listMotionData.Length; i++)
         {
             if (listMotionData[i].isActive.Value)
@@ -35,6 +36,10 @@ public class MotionManager : MonoBehaviour
                     listMotionData[i].isInit = true;
                 }
                 listMotionData[i].motion.ApplyMotion(rb);
+            }
+            else
+            {
+                listMotionData[i].isInit = false;
             }
         }
     }
@@ -48,6 +53,7 @@ public class MotionManager : MonoBehaviour
         {
             if (i==index)
             {
+                listMotionData[i].isInit = false;
                 listMotionData[i].isActive.Value = true;
             }
             else

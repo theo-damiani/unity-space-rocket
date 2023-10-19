@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: UM_isActive
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  _value: 0
+  _value: 1
   OnUpdateEvent: {fileID: 0}
