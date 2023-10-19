@@ -4998,6 +4998,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bc4d995cd33681e1bcdc2d462231def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uniformMotionIsInteractable: {fileID: 11400000, guid: 3b7f80d22261cac78ae7a973dbf4be16,
+    type: 2}
+  uniformMotionIsActiveAtStart: {fileID: 11400000, guid: 8e564f5163bd8999f9909230f07bae55,
+    type: 2}
+  uniformMotionInitVelocity: {fileID: 11400000, guid: 5794657d77057b209a18221030d54881,
+    type: 2}
+  UM_velocity: {fileID: 11400000, guid: 3c8bca5b67a92681dacc635d7674e90f, type: 2}
+  UM_isActive: {fileID: 11400000, guid: c531d4c837818c08b8ea0d64d8b2999f, type: 2}
 --- !u!4 &33647279
 Transform:
   m_ObjectHideFlags: 0
@@ -5168,7 +5176,10 @@ MonoBehaviour:
   listMotionData:
   - motion: {fileID: 11400000, guid: dc5637b9850e207d8909f32b69614d2d, type: 2}
     isInit: 0
-    isActive: 1
+    isActive:
+      UseConstant: 0
+      ConstantValue: 0
+      Variable: {fileID: 11400000, guid: c531d4c837818c08b8ea0d64d8b2999f, type: 2}
 --- !u!54 &330585549
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5699,7 +5710,10 @@ MonoBehaviour:
   listMotionData:
   - motion: {fileID: 11400000, guid: dc5637b9850e207d8909f32b69614d2d, type: 2}
     isInit: 0
-    isActive: 1
+    isActive:
+      UseConstant: 0
+      ConstantValue: 0
+      Variable: {fileID: 11400000, guid: c531d4c837818c08b8ea0d64d8b2999f, type: 2}
 --- !u!54 &928279824
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class MotionData
 {
     public Motion motion;
     public bool isInit;
-    public bool isActive;
+    public BoolReference isActive;
 }
 
 [RequireComponent(typeof(Rigidbody))]
@@ -27,7 +27,7 @@ public class MotionManager : MonoBehaviour
     {
         for (int i = 0; i < listMotionData.Length; i++)
         {
-            if (listMotionData[i].isActive)
+            if (listMotionData[i].isActive.Value)
             {
                 if (!listMotionData[i].isInit)
                 {
@@ -48,11 +48,11 @@ public class MotionManager : MonoBehaviour
         {
             if (i==index)
             {
-                listMotionData[i].isActive = true;
+                listMotionData[i].isActive.Value = true;
             }
             else
             {
-                listMotionData[i].isActive = false;
+                listMotionData[i].isActive.Value = false;
             }
         }
     }
@@ -62,14 +62,14 @@ public class MotionManager : MonoBehaviour
         if (index >= listMotionData.Length)
         {return;}
 
-        listMotionData[index].isActive = false;
+        listMotionData[index].isActive.Value = false;
     }
 
     public void StopAllMotion()
     {
         for (int i = 0; i < listMotionData.Length; i++)
         {
-            listMotionData[i].isActive = false;
+            listMotionData[i].isActive.Value = false;
         }
     }
 }

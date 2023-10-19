@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "uniformMotion", menuName="Motion / Uniform Motion")]
 public class UniformMotion : Motion
 {
-    public Vector3Reference velocity;
     public override void InitMotion(Rigidbody rigidbody)
     {
         // rigidbody.velocity = Vector3.zero;

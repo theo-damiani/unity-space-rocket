@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db10fbe86c39fef60a7309450cf197f8, type: 3}
-  m_Name: uniformMotion
+  m_Script: {fileID: 11500000, guid: a1f8cf848d752cc258a376be305356ce, type: 3}
+  m_Name: UM_isActive
   m_EditorClassIdentifier: 
-  velocity:
-    UseConstant: 0
-    ConstantValue: {x: 2, y: 0, z: 0}
-    Variable: {fileID: 11400000, guid: 3c8bca5b67a92681dacc635d7674e90f, type: 2}
+  DeveloperDescription: 
+  _value: 0
+  OnUpdateEvent: {fileID: 0}
