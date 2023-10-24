@@ -13,6 +13,15 @@ public class AppManager : Singleton<AppManager>
     [DllImport("__Internal")]
     private static extern void UnityIsLoaded();
 
+    [Header("Rocket States")]
+    [SerializeField] private BoolVariable stateShowRocketPath;
+
+    [Header("Rocket Variables")]
+    [SerializeField] private BoolVariable showRocketPath;
+    [SerializeField] private GameObject showRocketPathButton;
+
+
+
     // Uniform Motion State:
     [Header("Uniform Motion States")]
     [SerializeField, LabelOverride("IsInteractable")] private BoolVariable uniformMotionIsInteractable;
@@ -52,13 +61,19 @@ public class AppManager : Singleton<AppManager>
     {
         A_Motion m = affordances.PhysicsObject.UniformMotion;
         ConfigMotion(m.IsInteractive, m.IsActive, m.Velocity.X, m.Velocity.Y, m.Velocity.Z);
+        ConfigRocket(affordances.PhysicsObject.ShowTrace);
     }
 
-    public void ConfigMotion(bool isInteractable, bool isActiveAtStart, float x, float y, float z)
+    private void ConfigMotion(bool isInteractable, bool isActiveAtStart, float x, float y, float z)
     {
         uniformMotionIsInteractable.Value = isInteractable;
         uniformMotionIsActiveAtStart.Value = isActiveAtStart;
         uniformMotionInitVelocity.Value = new Vector3(x, y, z);
+    }
+
+    private void ConfigRocket(bool showPath)
+    {
+        stateShowRocketPath.Value = showPath;
     }
 
     public void ResetApp()
@@ -67,5 +82,9 @@ public class AppManager : Singleton<AppManager>
         UM_isActive.Value = uniformMotionIsActiveAtStart.Value;
         UM_button.SetActive(uniformMotionIsInteractable.Value);
         UM_button.GetComponent<Toggle>().isOn = uniformMotionIsActiveAtStart.Value;
+
+        showRocketPath.Value = stateShowRocketPath.Value;
+        showRocketPathButton.SetActive(true);
+        showRocketPathButton.GetComponent<Toggle>().isOn = stateShowRocketPath.Value;
     }
 }
