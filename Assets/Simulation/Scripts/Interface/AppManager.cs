@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using System;
 
 public class AppManager : Singleton<AppManager>
 {
@@ -26,7 +27,7 @@ public class AppManager : Singleton<AppManager>
     void Start()
     {
         #if UNITY_EDITOR == true
-            DefaultConfigMotion();
+            DefaultConfigFromAffordances(DefaultAffordances.GetDefaultAffordances());
             ResetApp();
         #endif
 
@@ -40,16 +41,24 @@ public class AppManager : Singleton<AppManager>
         #endif
     }
 
-    private void DefaultConfigMotion()
+    public void ResetAppFromJSON(string affordanceJson)
     {
-        ConfigMotion(true, true, Vector3.right*5);
+        Affordances newAffordances = JsonUtility.FromJson<Affordances>(affordanceJson);
+        DefaultConfigFromAffordances(newAffordances);
+        ResetApp();
     }
 
-    public void ConfigMotion(bool isInteractable, bool isActiveAtStart, Vector3 initVelocity)
+    private void DefaultConfigFromAffordances(Affordances affordances)
+    {
+        A_Motion m = affordances.PhysicsObject.UniformMotion;
+        ConfigMotion(m.IsInteractive, m.IsActive, m.Velocity.X, m.Velocity.Y, m.Velocity.Z);
+    }
+
+    public void ConfigMotion(bool isInteractable, bool isActiveAtStart, float x, float y, float z)
     {
         uniformMotionIsInteractable.Value = isInteractable;
         uniformMotionIsActiveAtStart.Value = isActiveAtStart;
-        uniformMotionInitVelocity.Value = initVelocity;
+        uniformMotionInitVelocity.Value = new Vector3(x, y, z);
     }
 
     public void ResetApp()
