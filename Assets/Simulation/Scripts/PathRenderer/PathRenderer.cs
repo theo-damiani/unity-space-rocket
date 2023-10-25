@@ -68,7 +68,6 @@ public class PathRenderer : MonoBehaviour
         {
             trailRenderer.enabled = enable;
         }
-        this.enabled = enable;
     }
 
     public void ClearPath()
