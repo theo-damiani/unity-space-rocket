@@ -13,7 +13,7 @@ public class CameraManager : MonoBehaviour
         distanceToTarget = transform.position - target.position;
     }
 
-    void Update()
+    void LateUpdate()
     {
         transform.position = target.position + distanceToTarget;
     }

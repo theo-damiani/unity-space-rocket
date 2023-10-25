@@ -23,7 +23,17 @@ public class VectorRigidbodyBind : MonoBehaviour
         }
     }
 
-    public void SetRigidbodyVelocity()
+    public void OnEnable()
+    {
+        VectorClickZone.OnZoneMouseUp += SetRigidbodyVelocity;
+    }
+
+    private void OnDisable()
+    {
+        VectorClickZone.OnZoneMouseUp -= SetRigidbodyVelocity;
+    }
+
+    public void SetRigidbodyVelocity(VectorClickZone clickZone)
     {
         rb.velocity = velocityVector.Value;
     }
