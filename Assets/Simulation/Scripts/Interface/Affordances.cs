@@ -1,29 +1,27 @@
 using System;
+using UnityEngine;
 
-[Serializable]
-public class Affordances
+
+[CreateAssetMenu(fileName = "Affordances", menuName="Affordances")]
+public class Affordances : ScriptableObject
 {
-    public bool ShowPlayButton;
-    public bool ShowPauseButton;
-    public bool ShowResetButton;
-    public bool ShowTimeControl;
-    public bool ShowCameraControl;
-    public A_PhysicsObject PhysicsObject;
+    public bool showPlayButton;
+    public bool showPauseButton;
+    public bool showResetButton;
+    public bool showTimeControl;
+    public bool showCameraControl;
+    public A_PhysicalObject physicalObject;
 }
 
 [Serializable]
-public class A_PhysicsObject
+public class A_PhysicalObject
 {
-    public bool ShowTrace;
-    public A_Motion UniformMotion;
-}
-
-[Serializable]
-public class A_Motion
-{
-    public bool IsInteractive;
-    public bool IsActive;
-    public A_Vector3 Velocity;
+    public bool showTrace;
+    public bool showTraceIsInteractive;
+    public A_Vector3 initialPosition;
+    public bool velocityVectorIsVisible;
+    public bool velocityVectorIsInteractive;
+    public A_Vector3 InitialVelocity;
 }
 
 [Serializable]
@@ -32,4 +30,9 @@ public class A_Vector3
     public float X;
     public float Y;
     public float Z;
+
+    public Vector3 ToVector3()
+    {
+        return new Vector3(X, Y, Z);
+    }
 }

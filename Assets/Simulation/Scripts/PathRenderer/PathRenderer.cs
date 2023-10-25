@@ -24,7 +24,7 @@ public class PathRenderer : MonoBehaviour
 
         // Trail Renderer On:
         trailRenderer.autodestruct = false;
-        trailRenderer.enabled = false;
+        trailRenderer.enabled = showPath.Value;
         trailRenderer.time = float.PositiveInfinity;
         //trailRenderer.time = 5f;
         trailRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;

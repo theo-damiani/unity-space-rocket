@@ -12,31 +12,21 @@ public class AppManager : Singleton<AppManager>
 
     [DllImport("__Internal")]
     private static extern void UnityIsLoaded();
-
-    [Header("Rocket States")]
-    [SerializeField] private BoolVariable stateShowRocketPath;
+    [Header("Affordances")]
+    [SerializeField] private Affordances defaultAffordances;
+    private Affordances currentAffordances;
 
     [Header("Rocket Variables")]
+    [SerializeField] private GameObject rocket;
+    [SerializeField] private Vector3Variable rocketVelocity;
+    [SerializeField] private GameObject rocketVelocityVector;
     [SerializeField] private BoolVariable showRocketPath;
     [SerializeField] private GameObject showRocketPathButton;
-
-
-
-    // Uniform Motion State:
-    [Header("Uniform Motion States")]
-    [SerializeField, LabelOverride("IsInteractable")] private BoolVariable uniformMotionIsInteractable;
-    [SerializeField, LabelOverride("IsActiveAtStart")] private BoolVariable uniformMotionIsActiveAtStart;
-    [SerializeField, LabelOverride("InitVelocity")] private Vector3Variable uniformMotionInitVelocity;
-
-    [Header("Uniform Motion Variables")]
-    [SerializeField, LabelOverride("velocity")] private Vector3Variable UM_velocity;
-    [SerializeField, LabelOverride("IsActive")] private BoolVariable UM_isActive;
-    [SerializeField, LabelOverride("IsInteractable")] private GameObject UM_button;
 
     void Start()
     {
         #if UNITY_EDITOR == true
-            DefaultConfigFromAffordances(DefaultAffordances.GetDefaultAffordances());
+            currentAffordances = Instantiate(defaultAffordances);
             ResetApp();
         #endif
 
@@ -52,39 +42,21 @@ public class AppManager : Singleton<AppManager>
 
     public void ResetAppFromJSON(string affordanceJson)
     {
-        Affordances newAffordances = JsonUtility.FromJson<Affordances>(affordanceJson);
-        DefaultConfigFromAffordances(newAffordances);
+        currentAffordances = JsonUtility.FromJson<Affordances>(affordanceJson);
         ResetApp();
-    }
-
-    private void DefaultConfigFromAffordances(Affordances affordances)
-    {
-        A_Motion m = affordances.PhysicsObject.UniformMotion;
-        ConfigMotion(m.IsInteractive, m.IsActive, m.Velocity.X, m.Velocity.Y, m.Velocity.Z);
-        ConfigRocket(affordances.PhysicsObject.ShowTrace);
-    }
-
-    private void ConfigMotion(bool isInteractable, bool isActiveAtStart, float x, float y, float z)
-    {
-        uniformMotionIsInteractable.Value = isInteractable;
-        uniformMotionIsActiveAtStart.Value = isActiveAtStart;
-        uniformMotionInitVelocity.Value = new Vector3(x, y, z);
-    }
-
-    private void ConfigRocket(bool showPath)
-    {
-        stateShowRocketPath.Value = showPath;
     }
 
     public void ResetApp()
     {
-        UM_velocity.Value = uniformMotionInitVelocity.Value;
-        UM_isActive.Value = uniformMotionIsActiveAtStart.Value;
-        UM_button.SetActive(uniformMotionIsInteractable.Value);
-        UM_button.GetComponent<Toggle>().isOn = uniformMotionIsActiveAtStart.Value;
-
-        showRocketPath.Value = stateShowRocketPath.Value;
-        showRocketPathButton.SetActive(true);
-        showRocketPathButton.GetComponent<Toggle>().isOn = stateShowRocketPath.Value;
+        // Rocket congif:
+        rocketVelocity.Value = currentAffordances.physicalObject.InitialVelocity.ToVector3();
+        rocketVelocityVector.SetActive(currentAffordances.physicalObject.velocityVectorIsVisible);
+        rocketVelocityVector.GetComponent<DraggableVector>().SetInteractable(currentAffordances.physicalObject.velocityVectorIsVisible);
+        rocketVelocityVector.GetComponent<DraggableVector>().Redraw();
+        rocket.GetComponent<Rigidbody>().velocity = rocketVelocity.Value;
+        // Path Renderer config:
+        showRocketPath.Value = currentAffordances.physicalObject.showTrace;
+        showRocketPathButton.SetActive(currentAffordances.physicalObject.showTraceIsInteractive);
+        showRocketPathButton.GetComponent<Toggle>().isOn = currentAffordances.physicalObject.showTrace;
     }
 }
