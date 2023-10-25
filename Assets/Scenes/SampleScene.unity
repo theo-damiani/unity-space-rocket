@@ -4946,11 +4946,11 @@ Transform:
   m_GameObject: {fileID: 27464667}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 20}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 330585546}
+  m_Father: {fileID: 928279820}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &27464671
 MonoBehaviour:
@@ -4966,8 +4966,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starsMax: 10
   starSize: 0.2
-  starMaxDistance: 30
-  starMaxSpawnSize: 16
+  starMaxDistance: 20
+  starMaxSpawnSize: 12
   starClipDistance: 1
 --- !u!1 &33647277
 GameObject:
@@ -5031,6 +5031,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5109,8 +5110,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 27464670}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
@@ -5157,6 +5157,19 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8fd4e90f7a7f010ab1035343d91bb63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 928279820}
 --- !u!1 &383755972
 GameObject:
   m_ObjectHideFlags: 0
@@ -11033,6 +11046,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 27464670}
   - {fileID: 430751364}
   - {fileID: 4608779177528167192}
   m_Father: {fileID: 1916861628}
@@ -11430,7 +11444,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 0.5568628, b: 0.41568628, a: 1}
-    - _Color: {r: 0.35686272, g: 0.67058825, b: 0.945098, a: 1}
+    - _Color: {r: 1, g: 0.5568628, b: 0.41568625, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
