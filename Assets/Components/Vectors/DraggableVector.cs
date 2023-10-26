@@ -122,7 +122,7 @@ public class DraggableVector : Vector
         if (headClickZone) headClickZone.transform.position = transform.position + components.Value;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (draggingTail || draggingHead)
         {
