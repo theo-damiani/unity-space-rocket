@@ -7,7 +7,7 @@ public class Vector3Variable : ScriptableObject
 {
     [SerializeField] private Vector3 _value; 
     [SerializeField] private float magnitudeRestriction; 
-    [SerializeField] private GameEvent OnUpdateEvent;
+    public GameEvent OnUpdateEvent;
 
     public Vector3 Value 
     {

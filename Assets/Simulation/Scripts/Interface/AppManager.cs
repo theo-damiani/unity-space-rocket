@@ -16,6 +16,10 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private Affordances defaultAffordances;
     private Affordances currentAffordances;
 
+    [Header("Main App Controls")]
+    [SerializeField] private GameObject playButton;
+    [SerializeField] private GameObject resetButton;
+
     [Header("Rocket Variables")]
     [SerializeField] private GameObject rocket;
     [SerializeField] private Vector3Variable rocketVelocity;
@@ -53,6 +57,9 @@ public class AppManager : Singleton<AppManager>
 
     public void ResetApp()
     {
+        // Main control config:
+        playButton.SetActive(currentAffordances.showPlayButton);
+        resetButton.SetActive(currentAffordances.showResetButton);
         // Rocket config:
         rocket.transform.SetPositionAndRotation(currentAffordances.physicalObject.initialPosition.ToVector3(), Quaternion.identity);
         rocket.transform.Find("RocketObject").transform.rotation = Quaternion.identity;

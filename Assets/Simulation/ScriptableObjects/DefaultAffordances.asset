@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ee2cadbf2b428168df77d674de7b76, type: 3}
   m_Name: DefaultAffordances
   m_EditorClassIdentifier: 
-  showPlayButton: 0
+  showPlayButton: 1
   showPauseButton: 0
-  showResetButton: 0
+  showResetButton: 1
   showTimeControl: 0
   showCameraControl: 0
   physicalObject:
