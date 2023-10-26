@@ -21,4 +21,9 @@ public class BoolReference
         get { return UseConstant ? ConstantValue : Variable.Value; }
         set { if (UseConstant) {ConstantValue = value;} else {Variable.Value = value;}}
     }
+
+    public GameEvent OnUpdateEvent
+    {
+        get { return UseConstant ? null : Variable.OnUpdateEvent;}
+    }
 }

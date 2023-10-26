@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,9 +7,12 @@ using UnityEngine.Events;
 public class GameEvent : ScriptableObject
 {
 	private List<GameEventListener> listeners = new List<GameEventListener>();
+    public event Action OnRaise;
 
     public void Raise()
     {
+        OnRaise?.Invoke();
+        
         for(int i = listeners.Count -1; i >= 0; i--)
             listeners[i].OnEventRaised();
     }

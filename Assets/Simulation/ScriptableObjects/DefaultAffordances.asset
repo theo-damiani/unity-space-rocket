@@ -26,7 +26,12 @@ MonoBehaviour:
       Z: 0
     velocityVectorIsVisible: 1
     velocityVectorIsInteractive: 1
-    InitialVelocity:
+    initialVelocity:
       X: 0
       Y: 0
       Z: 0
+  thrustForce:
+    isActive: 0
+    isInteractive: 1
+    showVector: 0
+    initialMagnitude: 3

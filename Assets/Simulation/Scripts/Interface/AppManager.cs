@@ -23,6 +23,11 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private BoolVariable showRocketPath;
     [SerializeField] private GameObject showRocketPathButton;
 
+    [Header("Thrust Variables")]
+    [SerializeField] private BoolVariable thrustIsActive;
+    [SerializeField] private Vector3Variable thrustForce;
+    [SerializeField] private BoolVariable thrustShowVector;
+
     void Start()
     {
         #if UNITY_EDITOR == true
@@ -48,8 +53,8 @@ public class AppManager : Singleton<AppManager>
 
     public void ResetApp()
     {
-        // Rocket congif:
-        rocketVelocity.Value = currentAffordances.physicalObject.InitialVelocity.ToVector3();
+        // Rocket config:
+        rocketVelocity.Value = currentAffordances.physicalObject.initialVelocity.ToVector3();
         rocketVelocityVector.SetActive(currentAffordances.physicalObject.velocityVectorIsVisible);
         rocketVelocityVector.GetComponent<DraggableVector>().SetInteractable(currentAffordances.physicalObject.velocityVectorIsVisible);
         rocketVelocityVector.GetComponent<DraggableVector>().Redraw();
@@ -58,5 +63,9 @@ public class AppManager : Singleton<AppManager>
         showRocketPath.Value = currentAffordances.physicalObject.showTrace;
         showRocketPathButton.SetActive(currentAffordances.physicalObject.showTraceIsInteractive);
         showRocketPathButton.GetComponent<Toggle>().isOn = currentAffordances.physicalObject.showTrace;
+        // Thrust Config:
+        thrustIsActive.Value = currentAffordances.thrustForce.isActive;
+        thrustShowVector.Value = currentAffordances.thrustForce.showVector;
+        thrustForce.Value = Vector3.up * currentAffordances.thrustForce.initialMagnitude;
     }
 }

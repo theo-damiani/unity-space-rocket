@@ -11,7 +11,7 @@ public class BoolVariable : ScriptableObject
 #endif
 
     [SerializeField] private bool _value;
-    [SerializeField] private GameEvent OnUpdateEvent;
+    public GameEvent OnUpdateEvent;
 
     public bool Value 
     {

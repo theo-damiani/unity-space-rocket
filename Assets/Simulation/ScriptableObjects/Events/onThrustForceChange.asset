@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5879de1b102dc1c18e50cf3875e1cf7, type: 3}
-  m_Name: thrustForce
+  m_Script: {fileID: 11500000, guid: 39953326c52a3434f81d5d649c19d65c, type: 3}
+  m_Name: onThrustForceChange
   m_EditorClassIdentifier: 
-  _value: {x: 0, y: 5, z: 0}
-  magnitudeRestriction: 0
-  OnUpdateEvent: {fileID: 11400000, guid: 754a78afe3c7f1aaeb8c2b0ffb07ae6e, type: 2}

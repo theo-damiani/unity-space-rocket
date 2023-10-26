@@ -11,6 +11,7 @@ public class Affordances : ScriptableObject
     public bool showTimeControl;
     public bool showCameraControl;
     public A_PhysicalObject physicalObject;
+    public A_Force thrustForce;
 }
 
 [Serializable]
@@ -21,7 +22,16 @@ public class A_PhysicalObject
     public A_Vector3 initialPosition;
     public bool velocityVectorIsVisible;
     public bool velocityVectorIsInteractive;
-    public A_Vector3 InitialVelocity;
+    public A_Vector3 initialVelocity;
+}
+
+[Serializable]
+public class A_Force
+{
+    public bool isActive;
+    public bool isInteractive;
+    public bool showVector;
+    public float initialMagnitude;
 }
 
 [Serializable]
