@@ -12,7 +12,6 @@ public class ActivateFromVariable : MonoBehaviour
     void Start()
     {
         SetAllGameObject();
-        SetConditionEventListeners();
     }
 
     bool ReduceConditions()
@@ -29,7 +28,17 @@ public class ActivateFromVariable : MonoBehaviour
         }
     }
 
-    private void SetConditionEventListeners()
+    void OnEnable()
+    {
+        AddConditionEventListeners();
+    }
+
+    void OnDisable()
+    {
+        RemoveConditionEventListeners();
+    }
+
+    private void AddConditionEventListeners()
     {
         for (int i = 0; i < listConditions.Count; i++)
         {
@@ -37,6 +46,18 @@ public class ActivateFromVariable : MonoBehaviour
             if (currentEvent)
             {
                 currentEvent.OnRaise += SetAllGameObject;
+            }
+        }
+    }
+
+    private void RemoveConditionEventListeners()
+    {
+        for (int i = 0; i < listConditions.Count; i++)
+        {
+            GameEvent currentEvent = listConditions[i].OnUpdateEvent;
+            if (currentEvent)
+            {
+                currentEvent.OnRaise -= SetAllGameObject;
             }
         }
     }
