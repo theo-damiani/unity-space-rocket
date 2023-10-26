@@ -54,6 +54,8 @@ public class AppManager : Singleton<AppManager>
     public void ResetApp()
     {
         // Rocket config:
+        rocket.transform.SetPositionAndRotation(currentAffordances.physicalObject.initialPosition.ToVector3(), Quaternion.identity);
+        rocket.transform.Find("RocketObject").transform.rotation = Quaternion.identity;
         rocketVelocity.Value = currentAffordances.physicalObject.initialVelocity.ToVector3();
         rocketVelocityVector.SetActive(currentAffordances.physicalObject.velocityVectorIsVisible);
         rocketVelocityVector.GetComponent<DraggableVector>().SetInteractable(currentAffordances.physicalObject.velocityVectorIsVisible);

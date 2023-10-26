@@ -60,10 +60,7 @@ public class PathRenderer : MonoBehaviour
 
     public void SetPathRenderer(bool enable)
     {
-        if (!enable)
-        {
-            ClearPath();
-        }
+        ClearPath();
         if (trailRenderer)
         {
             trailRenderer.enabled = enable;
