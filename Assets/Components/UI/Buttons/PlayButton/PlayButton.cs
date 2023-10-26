@@ -10,7 +10,7 @@ public class PlayButton : MonoBehaviour
     [SerializeField] private List<GameEvent> OnPlayEventList;
     [SerializeField] private List<GameEvent> OnPauseEventList;
 
-    private bool isPaused = true;
+    private bool isPaused = false;
 
     public void Play()
     {

@@ -35,7 +35,8 @@ public class VectorRigidbodyBind : MonoBehaviour
 
     public void SetRigidbodyVelocity(VectorClickZone clickZone)
     {
-        rb.velocity = velocityVector.Value;
+        if (!rb.isKinematic)
+            rb.velocity = velocityVector.Value;
     }
 
     public void SetVectorVelocity()
