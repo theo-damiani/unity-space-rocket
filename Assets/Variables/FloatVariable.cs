@@ -1,38 +1,22 @@
-﻿// ----------------------------------------------------------------------------
-// Unite 2017 - Game Architecture with Scriptable Objects
-// 
-// Author: Ryan Hipple
-// Date:   10/04/17
-// ----------------------------------------------------------------------------
-
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "Variable", menuName = "Variables / Float")]
-public class FloatVariable : ScriptableObject
+public class FloatVariable : BaseVariable<float>
 {
-#if UNITY_EDITOR
-    [Multiline]
-    public string DeveloperDescription = "";
-#endif
-    public float Value;
-
-    public void SetValue(float value)
+    public override bool Clampable { get { return true; } }
+    protected override float ClampValue(float value)
     {
-        Value = value;
-    }
-
-    public void SetValue(FloatVariable value)
-    {
-        Value = value.Value;
-    }
-
-    public void ApplyChange(float amount)
-    {
-        Value += amount;
-    }
-
-    public void ApplyChange(FloatVariable amount)
-    {
-        Value += amount.Value;
+        if (value.CompareTo(MinClampValue) < 0)
+        {
+            return MinClampValue;
+        }
+        else if (value.CompareTo(MaxClampValue) > 0)
+        {
+            return MaxClampValue;
+        }
+        else
+        {
+            return value;
+        }
     }
 }
