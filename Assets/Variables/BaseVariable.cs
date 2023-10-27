@@ -75,7 +75,7 @@ public abstract class BaseVariable<T> : ScriptableObject
     }
 
     public virtual bool Clampable { get { return false; } }
-    public bool ReadOnly { get { return _readOnly; } }
+    public virtual bool ReadOnly { get { return _readOnly; } }
     public bool IsClamped { get { return _isClamped; } }
     public System.Type Type { get { return typeof(T); } }
     public bool UseDefaultValue => _useDefaultValue;
@@ -86,7 +86,7 @@ public abstract class BaseVariable<T> : ScriptableObject
     }
     public virtual T SetValue(T newValue)
     {
-        if (_readOnly)
+        if (ReadOnly)
         {
             RaiseReadonlyWarning();
             return _value;
@@ -108,7 +108,7 @@ public abstract class BaseVariable<T> : ScriptableObject
     }
     private void RaiseReadonlyWarning()
     {
-        if (!_readOnly || !_raiseWarning)
+        if (!ReadOnly || !_raiseWarning)
             return;
 
         Debug.LogWarning("Tried to set value on " + this + ", but value is readonly!");

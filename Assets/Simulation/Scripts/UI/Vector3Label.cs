@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 [ExecuteInEditMode, RequireComponent(typeof(TextMeshProUGUI))]
 public class Vector3Label : MonoBehaviour
 {
     [SerializeField] private Vector3Reference vector3Variable;
+    [SerializeField] private Vector3 defaultVariable;
+    [SerializeField] private BoolReference boolReference;
+    [SerializeField] private BoolReference useDefaultOnBool;
     [SerializeField] private int fontSize;
     [SerializeField] private TextMeshProUGUI labelX;
     [SerializeField] private TextMeshProUGUI labelY;
@@ -23,9 +27,18 @@ public class Vector3Label : MonoBehaviour
 
     public void SetText()
     {
-        labelX.text = vector3Variable.Value.x.ToString("F2");
-        labelY.text = vector3Variable.Value.y.ToString("F2");
-        labelZ.text = vector3Variable.Value.z.ToString("F2");
+        if (useDefaultOnBool.Value == boolReference.Value)
+        {
+            labelX.text = defaultVariable.x.ToString("F2");
+            labelY.text = defaultVariable.y.ToString("F2");
+            labelZ.text = defaultVariable.z.ToString("F2");
+        }
+        else 
+        {
+            labelX.text = vector3Variable.Value.x.ToString("F2");
+            labelY.text = vector3Variable.Value.y.ToString("F2");
+            labelZ.text = vector3Variable.Value.z.ToString("F2");
+        }
     }
 
     void OnEnable()
@@ -33,11 +46,19 @@ public class Vector3Label : MonoBehaviour
         GameEvent gameEvent = vector3Variable.OnUpdateEvent;
         if (gameEvent)
             gameEvent.OnRaise += SetText;
+
+        gameEvent = boolReference.OnUpdateEvent;
+        if (gameEvent)
+            gameEvent.OnRaise += SetText;
     }
 
     void OnDisable()
     {
         GameEvent gameEvent = vector3Variable.OnUpdateEvent;
+        if (gameEvent)
+            gameEvent.OnRaise -= SetText;
+
+        gameEvent = boolReference.OnUpdateEvent;
         if (gameEvent)
             gameEvent.OnRaise -= SetText;
     }

@@ -24,7 +24,7 @@ MonoBehaviour:
       X: 0
       Y: 0
       Z: 0
-    showVelocityVector: 0
+    showVelocityVector: 1
     velocityVectorIsInteractive: 1
     showVelocityLabel: 1
     initialVelocity:
