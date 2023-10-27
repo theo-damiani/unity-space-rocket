@@ -10,11 +10,11 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         // Cache the initial offset at time of load/spawn:
-        distanceToTarget = transform.position - target.position;
+        distanceToTarget = gameObject.transform.localPosition - target.localPosition;
     }
 
     void LateUpdate()
     {
-        transform.position = target.position + distanceToTarget;
+        gameObject.transform.localPosition = target.localPosition + distanceToTarget;
     }
 }

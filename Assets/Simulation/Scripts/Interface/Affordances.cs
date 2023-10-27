@@ -20,8 +20,9 @@ public class A_PhysicalObject
     public bool showTrace;
     public bool showTraceIsInteractive;
     public A_Vector3 initialPosition;
-    public bool velocityVectorIsVisible;
+    public bool showVelocityVector;
     public bool velocityVectorIsInteractive;
+    public bool showVelocityLabel;
     public A_Vector3 initialVelocity;
 }
 

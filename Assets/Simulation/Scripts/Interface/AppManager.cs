@@ -24,6 +24,8 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private GameObject rocket;
     [SerializeField] private Vector3Variable rocketVelocity;
     [SerializeField] private GameObject rocketVelocityVector;
+    [SerializeField] private GameObject velocityLabel;
+    [SerializeField] private GameObject velocityEquation;
     [SerializeField] private BoolVariable showRocketPath;
     [SerializeField] private GameObject showRocketPathButton;
 
@@ -64,10 +66,12 @@ public class AppManager : Singleton<AppManager>
         rocket.transform.SetPositionAndRotation(currentAffordances.physicalObject.initialPosition.ToVector3(), Quaternion.identity);
         rocket.transform.Find("RocketObject").transform.rotation = Quaternion.identity;
         rocketVelocity.Value = currentAffordances.physicalObject.initialVelocity.ToVector3();
-        rocketVelocityVector.SetActive(currentAffordances.physicalObject.velocityVectorIsVisible);
-        rocketVelocityVector.GetComponent<DraggableVector>().SetInteractable(currentAffordances.physicalObject.velocityVectorIsVisible);
+        rocketVelocityVector.SetActive(currentAffordances.physicalObject.showVelocityVector);
+        rocketVelocityVector.GetComponent<DraggableVector>().SetInteractable(currentAffordances.physicalObject.showVelocityVector);
         rocketVelocityVector.GetComponent<DraggableVector>().Redraw();
         rocket.GetComponent<Rigidbody>().velocity = rocketVelocity.Value;
+        velocityEquation.SetActive(currentAffordances.physicalObject.showVelocityLabel);
+        velocityLabel.SetActive(currentAffordances.physicalObject.showVelocityLabel);
         // Path Renderer config:
         showRocketPath.Value = currentAffordances.physicalObject.showTrace;
         showRocketPathButton.SetActive(currentAffordances.physicalObject.showTraceIsInteractive);
