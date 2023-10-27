@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(TextMeshProUGUI))]
+
+[ExecuteInEditMode, RequireComponent(typeof(TextMeshProUGUI))]
 public class Vector3Label : MonoBehaviour
 {
     [SerializeField] private Vector3Reference vector3Variable;
@@ -39,5 +40,14 @@ public class Vector3Label : MonoBehaviour
         GameEvent gameEvent = vector3Variable.OnUpdateEvent;
         if (gameEvent)
             gameEvent.OnRaise -= SetText;
+    }
+
+    // Editor-only function that Unity calls when the script is loaded or a value changes in the Inspector.
+    void OnValidate()
+    {
+        labelX.fontSize = fontSize;
+        labelY.fontSize = fontSize;
+        labelZ.fontSize = fontSize;
+        SetText();
     }
 }
