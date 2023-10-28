@@ -24,8 +24,9 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private GameObject rocket;
     [SerializeField] private Vector3Variable rocketVelocity;
     [SerializeField] private GameObject rocketVelocityVector;
+    [SerializeField] private BoolVariable showVelocityEquation;
     [SerializeField] private GameObject velocityLabel;
-    [SerializeField] private GameObject velocityEquation;
+    [SerializeField] private BoolVariable velocityEquation;
     [SerializeField] private BoolVariable showRocketPath;
     [SerializeField] private GameObject showRocketPathButton;
 
@@ -33,6 +34,8 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private BoolVariable thrustIsActive;
     [SerializeField] private Vector3Variable thrustForce;
     [SerializeField] private BoolVariable thrustShowVector;
+    [SerializeField] private GameObject thrustShowLabel;
+    [SerializeField] private BoolVariable thrustShowEquation;
 
     void Start()
     {
@@ -70,8 +73,9 @@ public class AppManager : Singleton<AppManager>
         rocketVelocityVector.GetComponent<DraggableVector>().SetInteractable(currentAffordances.physicalObject.showVelocityVector);
         rocketVelocityVector.GetComponent<DraggableVector>().Redraw();
         rocket.GetComponent<Rigidbody>().velocity = rocketVelocity.Value;
-        velocityEquation.SetActive(currentAffordances.physicalObject.showVelocityLabel);
+        velocityEquation.Value = currentAffordances.physicalObject.showVelocityLabel;
         velocityLabel.SetActive(currentAffordances.physicalObject.showVelocityLabel);
+        showVelocityEquation.Value = currentAffordances.physicalObject.showVelocityLabel;
         // Path Renderer config:
         showRocketPath.Value = currentAffordances.physicalObject.showTrace;
         showRocketPathButton.SetActive(currentAffordances.physicalObject.showTraceIsInteractive);
@@ -80,5 +84,7 @@ public class AppManager : Singleton<AppManager>
         thrustIsActive.Value = currentAffordances.thrustForce.isActive;
         thrustShowVector.Value = currentAffordances.thrustForce.showVector;
         thrustForce.Value = Vector3.up * currentAffordances.thrustForce.initialMagnitude;
+        thrustShowEquation.Value = currentAffordances.thrustForce.showEquation;
+        thrustShowLabel.SetActive(currentAffordances.thrustForce.showLabel);
     }
 }

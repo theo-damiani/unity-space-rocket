@@ -32,6 +32,8 @@ public class A_Force
     public bool isActive;
     public bool isInteractive;
     public bool showVector;
+    public bool showLabel;
+    public bool showEquation;
     public float initialMagnitude;
 }
 

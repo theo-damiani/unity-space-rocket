@@ -31,6 +31,12 @@ public class HorizontalDrawer : MonoBehaviour
         rectTransform.anchoredPosition = new Vector2(xPosition, yShowing);
     }
 
+    public void SetShowingY(float newY)
+    {
+        yShowing = newY;
+        rectTransform.anchoredPosition = new Vector2(xPosition, yShowing);
+    }
+
     public void SetVisibility(bool visible)
     {
         if (visible)

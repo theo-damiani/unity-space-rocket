@@ -35,4 +35,6 @@ MonoBehaviour:
     isActive: 0
     isInteractive: 1
     showVector: 1
+    showLabel: 1
+    showEquation: 1
     initialMagnitude: 3
