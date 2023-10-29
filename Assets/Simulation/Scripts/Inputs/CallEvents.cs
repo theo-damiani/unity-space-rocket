@@ -5,9 +5,15 @@ using UnityEngine.Events;
 
 public class CallEvents : MonoBehaviour
 {
+    public BoolReference isActive;
     public KeyCode key;
     public UnityEvent responseOnKeyDown;
     public UnityEvent responseOnKeyUp;
+
+    void Start()
+    {
+        enabled = isActive.Value;
+    }
 
     // Update is called once per frame
     void Update()

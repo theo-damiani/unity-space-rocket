@@ -25,16 +25,17 @@ MonoBehaviour:
       Y: 0
       Z: 0
     showVelocityVector: 1
-    velocityVectorIsInteractive: 1
-    showVelocityLabel: 1
     initialVelocity:
-      X: 0
+      X: 5
       Y: 0
       Z: 0
+    velocityVectorIsInteractive: 0
+    showVelocityLabel: 0
+    showVelocityEquation: 0
   thrustForce:
-    isActive: 0
-    isInteractive: 1
+    isActive: 1
+    isInteractive: 0
     showVector: 1
     showLabel: 1
-    showEquation: 1
+    showEquation: 0
     initialMagnitude: 3

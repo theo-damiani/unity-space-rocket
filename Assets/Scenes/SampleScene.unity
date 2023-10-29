@@ -5156,6 +5156,8 @@ MonoBehaviour:
   showRocketPath: {fileID: 11400000, guid: c82825c4d745443778fb8e630233ce24, type: 2}
   showRocketPathButton: {fileID: 732778285}
   thrustIsActive: {fileID: 11400000, guid: aeb0986f7bf266d389fdaa313ad2c082, type: 2}
+  thrustIsInteractive: {fileID: 11400000, guid: cb695a3c020f57b60be3c508131ba076,
+    type: 2}
   thrustForce: {fileID: 11400000, guid: 562ac29e7ea0695a0894db582ee533cc, type: 2}
   thrustShowVector: {fileID: 11400000, guid: cb07e003ca71668a1a11565525164cca, type: 2}
   thrustShowLabel: {fileID: 1128224334}
@@ -5334,6 +5336,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2e26c2fd37d375c8e419354be7a208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: cb695a3c020f57b60be3c508131ba076, type: 2}
   key: 32
   responseOnKeyDown:
     m_PersistentCalls:
@@ -5409,6 +5415,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2e26c2fd37d375c8e419354be7a208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   key: 8
   responseOnKeyDown:
     m_PersistentCalls:
@@ -16269,6 +16279,7 @@ GameObject:
   - component: {fileID: 1916861628}
   - component: {fileID: 1916861629}
   - component: {fileID: 1916861630}
+  - component: {fileID: 1916861631}
   m_Layer: 0
   m_Name: Simulation
   m_TagString: Untagged
@@ -16331,6 +16342,24 @@ MonoBehaviour:
     Variable: {fileID: 11400000, guid: aeb0986f7bf266d389fdaa313ad2c082, type: 2}
   listGameObject:
   - {fileID: 430751363}
+--- !u!114 &1916861631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916861627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53263aeb087ea852d9ae24380039f4ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listConditions:
+  - UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: cb695a3c020f57b60be3c508131ba076, type: 2}
+  listGameObject:
+  - {fileID: 1225787152}
 --- !u!21 &2021885515
 Material:
   serializedVersion: 8

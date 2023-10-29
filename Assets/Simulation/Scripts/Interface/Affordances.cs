@@ -21,9 +21,10 @@ public class A_PhysicalObject
     public bool showTraceIsInteractive;
     public A_Vector3 initialPosition;
     public bool showVelocityVector;
+    public A_Vector3 initialVelocity;
     public bool velocityVectorIsInteractive;
     public bool showVelocityLabel;
-    public A_Vector3 initialVelocity;
+    public bool showVelocityEquation;
 }
 
 [Serializable]
