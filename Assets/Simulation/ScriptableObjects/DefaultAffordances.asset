@@ -40,7 +40,7 @@ MonoBehaviour:
     showVelocityLabel: 1
     showVelocityEquation: 1
   thrustForce:
-    isActive: 1
+    isActive: 0
     isInteractive: 1
     showVector: 1
     showLabel: 1
