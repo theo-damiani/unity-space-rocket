@@ -13,29 +13,36 @@ MonoBehaviour:
   m_Name: DefaultAffordances
   m_EditorClassIdentifier: 
   showPlayButton: 1
-  showPauseButton: 0
+  showPauseButton: 1
   showResetButton: 1
   showTimeControl: 0
   showCameraControl: 0
+  showReferenceFrame: 1
   physicalObject:
+    isInteractive: 1
     showTrace: 1
     showTraceIsInteractive: 1
     initialPosition:
       X: 0
       Y: 0
       Z: 0
+    initialRotation:
+      X: 0
+      Y: 0
+      Z: 0
+    initialRotationZ: 0
     showVelocityVector: 1
     initialVelocity:
       X: 5
       Y: 0
       Z: 0
-    velocityVectorIsInteractive: 0
-    showVelocityLabel: 0
-    showVelocityEquation: 0
+    velocityVectorIsInteractive: 1
+    showVelocityLabel: 1
+    showVelocityEquation: 1
   thrustForce:
     isActive: 1
-    isInteractive: 0
+    isInteractive: 1
     showVector: 1
     showLabel: 1
-    showEquation: 0
+    showEquation: 1
     initialMagnitude: 3

@@ -10,6 +10,7 @@ public class Affordances : ScriptableObject
     public bool showResetButton;
     public bool showTimeControl;
     public bool showCameraControl;
+    public bool showReferenceFrame;
     public A_PhysicalObject physicalObject;
     public A_Force thrustForce;
 }
@@ -17,9 +18,12 @@ public class Affordances : ScriptableObject
 [Serializable]
 public class A_PhysicalObject
 {
+    public bool isInteractive;
     public bool showTrace;
     public bool showTraceIsInteractive;
     public A_Vector3 initialPosition;
+    public A_Vector3 initialRotation;
+    public float initialRotationZ; // in degrees!
     public bool showVelocityVector;
     public A_Vector3 initialVelocity;
     public bool velocityVectorIsInteractive;

@@ -20,6 +20,12 @@ public class PlayButton : MonoBehaviour
         RaiseEventsInList(OnPlayEventList);
     }
 
+    public void PlayWithoutRaising()
+    {
+        isPaused = false;
+        if (icon) icon.sprite = pauseIcon;
+    }
+
     public void Pause()
     {
         isPaused = true;

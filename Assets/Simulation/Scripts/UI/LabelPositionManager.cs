@@ -28,14 +28,8 @@ public class LabelPositionManager : MonoBehaviour
             if (UIitem.IsActive.Value) {
                 //showingY -= (UIitem.Item.transform as RectTransform).rect.height;
                 Vector3 currentPos = UIitem.Item.transform.localPosition;
-                Vector3 anchoredPos = (UIitem.Item.transform as RectTransform).anchoredPosition;
                 float newY = startY + spacingTop*nbOfItemsActive;
-                Debug.Log("--");
-                Debug.Log(UIitem.Item.transform.localPosition);
                 UIitem.Item.transform.localPosition = new Vector3(currentPos.x, currentPos.y+newY, currentPos.z);
-                Debug.Log(newY);
-                Debug.Log(UIitem.Item.transform.localPosition);
-                Debug.Log(anchoredPos);
                 nbOfItemsActive++;
             }
             else
@@ -47,6 +41,7 @@ public class LabelPositionManager : MonoBehaviour
         if (nbOfItemsActive==0)
         {
             showingY = -50;
+            gameObject.SetActive(false);
         }
         else
         {
