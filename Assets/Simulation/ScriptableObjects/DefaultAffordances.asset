@@ -33,7 +33,7 @@ MonoBehaviour:
     initialRotationZ: 0
     showVelocityVector: 1
     initialVelocity:
-      X: 5
+      X: 4
       Y: 0
       Z: 0
     velocityVectorIsInteractive: 1

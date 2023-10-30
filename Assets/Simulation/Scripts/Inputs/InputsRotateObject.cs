@@ -24,27 +24,47 @@ public class InputsRotateObject : MonoBehaviour
         {
             RotateAll(localRotationRight);
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             RotateAll(-localRotationRight);
         }
-        else if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             RotateAll(localRotationUp);
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             RotateAll(-localRotationUp);
         }
+    }
+
+    public void PressKeyUp()
+    {
+        RotateAll(localRotationUp);
+    }
+
+    public void PressKeyDown()
+    {
+        RotateAll(-localRotationUp);
+    }
+
+    public void PressKeyLeft()
+    {
+        RotateAll(-localRotationRight);
+    }
+
+    public void PressKeyRight()
+    {
+        RotateAll(localRotationRight);
     }
 
     private void RotateAll(Vector3 rot)
     {
         foreach (Transform t in transforms)
         {
-            t.Rotate(rot);
+            t.Rotate(rot*Time.deltaTime);
             Vector3 worldRot = t.TransformVector(rot);
-            vector.Value = Quaternion.Euler(worldRot) * vector.Value;
+            vector.Value = Quaternion.Euler(worldRot*Time.deltaTime) * vector.Value;
         }
     }
 }
