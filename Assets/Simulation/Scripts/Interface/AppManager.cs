@@ -16,9 +16,13 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private Affordances defaultAffordances;
     private Affordances currentAffordances;
 
+    [Header("Camera")]
+    [SerializeField] private CameraManager mainCamera;
+    [SerializeField] private RectTransform cameraControls;
+
     [Header("Main App Controls")]
-    [SerializeField] private GameObject playButton;
-    [SerializeField] private GameObject resetButton;
+    [SerializeField] private RectTransform playButton;
+    [SerializeField] private RectTransform resetButton;
 
     [Header("Rocket Variables")]
     [SerializeField] private GameObject rocket;
@@ -28,7 +32,7 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private BoolVariable showVelocityEquation;
     [SerializeField] private GameObject velocityLabel;
     [SerializeField] private BoolVariable showRocketPath;
-    [SerializeField] private GameObject showRocketPathToggle;
+    [SerializeField] private RectTransform showRocketPathToggle;
 
     [Header("Thrust Variables")]
     [SerializeField] private BoolVariable thrustIsActive;
@@ -67,8 +71,8 @@ public class AppManager : Singleton<AppManager>
     public void ResetApp()
     {
         // Main control config:
-        playButton.SetActive(currentAffordances.showPlayButton);
-        resetButton.SetActive(currentAffordances.showResetButton);
+        playButton.gameObject.SetActive(currentAffordances.showPlayButton);
+        resetButton.gameObject.SetActive(currentAffordances.showResetButton);
         // Rocket config:
         rocket.transform.SetPositionAndRotation(currentAffordances.physicalObject.initialPosition.ToVector3(), Quaternion.identity);
         rocket.transform.Find("RocketObject").transform.rotation = Quaternion.Euler(currentAffordances.physicalObject.initialRotation.ToVector3());
@@ -86,7 +90,7 @@ public class AppManager : Singleton<AppManager>
         rocketIsInteractive.Value = currentAffordances.physicalObject.isInteractive;
         // Path Renderer config:
         showRocketPath.Value = currentAffordances.physicalObject.showTrace;
-        showRocketPathToggle.SetActive(currentAffordances.physicalObject.showTraceIsInteractive);
+        showRocketPathToggle.gameObject.SetActive(currentAffordances.physicalObject.showTraceIsInteractive);
         showRocketPathToggle.GetComponent<ToggleStartActivation>().SetToggleVisibility(currentAffordances.physicalObject.showTrace);
         // Thrust Config:
         thrustIsActive.Value = currentAffordances.thrustForce.isActive;
@@ -100,5 +104,11 @@ public class AppManager : Singleton<AppManager>
         thrustIsInteractive.Value = currentAffordances.thrustForce.isInteractive;
         // Extra:
         referenceFrame.SetActive(currentAffordances.showReferenceFrame);
+
+        // Camera:
+        mainCamera.transform.position = currentAffordances.camera.position.ToVector3();
+        mainCamera.isLockedOnTarget = currentAffordances.camera.isLockedOnObject;
+        mainCamera.SetOffsetToTarget();
+        cameraControls.gameObject.SetActive(currentAffordances.camera.showCameraControl);
     }
 }

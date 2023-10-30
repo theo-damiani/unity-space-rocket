@@ -5183,8 +5183,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultAffordances: {fileID: 11400000, guid: 76590c22b401cbca7a30ae61acb35732, type: 2}
-  playButton: {fileID: 80957685}
-  resetButton: {fileID: 1343931988}
+  mainCamera: {fileID: 330585548}
+  cameraControls: {fileID: 69520574}
+  playButton: {fileID: 80957686}
+  resetButton: {fileID: 1343931989}
   rocket: {fileID: 928279819}
   rocketIsInteractive: {fileID: 11400000, guid: 2bef2398a190fcffe9ae72b711396413,
     type: 2}
@@ -5194,7 +5196,7 @@ MonoBehaviour:
     type: 2}
   velocityLabel: {fileID: 2117030776}
   showRocketPath: {fileID: 11400000, guid: c82825c4d745443778fb8e630233ce24, type: 2}
-  showRocketPathToggle: {fileID: 1275448968}
+  showRocketPathToggle: {fileID: 1275448969}
   thrustIsActive: {fileID: 11400000, guid: aeb0986f7bf266d389fdaa313ad2c082, type: 2}
   thrustIsInteractive: {fileID: 11400000, guid: cb695a3c020f57b60be3c508131ba076,
     type: 2}
@@ -5267,12 +5269,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7286456333041016512, guid: 9eac30bb48f435929b47c0ee9be89f0a,
     type: 3}
   m_PrefabInstance: {fileID: 1796067116}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &80957685 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5354190820511917909, guid: a290ebb3dea86415c89855bdc5cd5c62,
-    type: 3}
-  m_PrefabInstance: {fileID: 734179058}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &80957686 stripped
 RectTransform:
@@ -5941,6 +5937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 928279820}
+  isLockedOnTarget: 1
 --- !u!1001 &362835295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15653,12 +15650,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &1343931988 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7176590248243743230, guid: b6814d3687735482c86029f4d674d270,
-    type: 3}
-  m_PrefabInstance: {fileID: 807918976}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1343931989 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7176590248243743231, guid: b6814d3687735482c86029f4d674d270,

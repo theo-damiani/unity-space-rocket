@@ -9,10 +9,18 @@ public class Affordances : ScriptableObject
     public bool showPauseButton;
     public bool showResetButton;
     public bool showTimeControl;
-    public bool showCameraControl;
+    public A_Camera camera;
     public bool showReferenceFrame;
     public A_PhysicalObject physicalObject;
     public A_Force thrustForce;
+}
+
+[Serializable]
+public class A_Camera
+{
+    public A_Vector3 position;
+    public bool showCameraControl;
+    public bool isLockedOnObject;
 }
 
 [Serializable]

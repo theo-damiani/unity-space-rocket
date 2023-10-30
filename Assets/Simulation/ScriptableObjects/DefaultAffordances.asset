@@ -16,7 +16,13 @@ MonoBehaviour:
   showPauseButton: 1
   showResetButton: 1
   showTimeControl: 0
-  showCameraControl: 0
+  camera:
+    position:
+      X: 0
+      Y: 1
+      Z: -10
+    showCameraControl: 0
+    isLockedOnObject: 1
   showReferenceFrame: 1
   physicalObject:
     isInteractive: 1

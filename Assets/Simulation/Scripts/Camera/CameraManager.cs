@@ -5,13 +5,18 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] private Transform target;
+    [HideInInspector] public bool isLockedOnTarget = true;
     private Vector3 initOffsetToTarget;
     private Vector3 distanceToTarget;
-    private bool isLockedOnTarget = true;
 
     void Start()
     {
         // Cache the initial offset at time of load/spawn:
+        SetOffsetToTarget();
+    }
+
+    public void SetOffsetToTarget()
+    {
         initOffsetToTarget = gameObject.transform.localPosition - target.localPosition;
         distanceToTarget = initOffsetToTarget;
     }
