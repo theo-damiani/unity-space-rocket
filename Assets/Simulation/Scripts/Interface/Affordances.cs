@@ -30,8 +30,7 @@ public class A_PhysicalObject
     public bool showTrace;
     public bool showTraceIsInteractive;
     public A_Vector3 initialPosition;
-    public A_Vector3 initialRotation;
-    public float initialRotationZ; // in degrees!
+    public A_Vector3 initialRotation; // in degrees!
     public bool showVelocityVector;
     public A_Vector3 initialVelocity;
     public bool velocityVectorIsInteractive;
