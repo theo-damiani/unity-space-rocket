@@ -21,7 +21,7 @@ MonoBehaviour:
       X: 0
       Y: 1
       Z: -10
-    showCameraControl: 0
+    showCameraControl: 1
     isLockedOnObject: 1
   showReferenceFrame: 1
   physicalObject:
@@ -29,7 +29,7 @@ MonoBehaviour:
     showTrace: 1
     showTraceIsInteractive: 1
     initialPosition:
-      X: -5
+      X: 0
       Y: 0
       Z: 0
     initialRotation:

@@ -19,6 +19,7 @@ public class AppManager : Singleton<AppManager>
     [Header("Camera")]
     [SerializeField] private CameraManager mainCamera;
     [SerializeField] private RectTransform cameraControls;
+    [SerializeField] private RectTransform cameraZoomSlider;
 
     [Header("Main App Controls")]
     [SerializeField] private RectTransform playButton;
@@ -106,7 +107,15 @@ public class AppManager : Singleton<AppManager>
         referenceFrame.SetActive(currentAffordances.showReferenceFrame);
 
         // Camera:
-        mainCamera.transform.position = currentAffordances.camera.position.ToVector3();
+        Vector3 cameraPos = currentAffordances.camera.position.ToVector3();
+        Slider zoomSlider = cameraZoomSlider.GetComponent<Slider>();
+        CameraManager cameraManager = mainCamera.GetComponent<CameraManager>();
+        float cameraZ = Mathf.Clamp(cameraPos.z, cameraManager.minZ, cameraManager.maxZ);
+        zoomSlider.minValue = cameraManager.GetSliderMinZ();
+        zoomSlider.maxValue = cameraManager.GetSliderMaxZ();
+        Debug.Log(cameraManager.GetSliderMinZ() + " et " + cameraManager.GetSliderMaxZ());
+        zoomSlider.SetValueWithoutNotify(cameraManager.CameraToSliderZ(cameraZ));
+        mainCamera.transform.position = new Vector3(cameraPos.x, cameraPos.y, cameraZ);
         mainCamera.isLockedOnTarget = currentAffordances.camera.isLockedOnObject;
         mainCamera.SetOffsetToTarget();
         cameraControls.gameObject.SetActive(currentAffordances.camera.showCameraControl);

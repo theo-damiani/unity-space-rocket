@@ -51,8 +51,6 @@ public class InfiniteStars : MonoBehaviour {
         for (int i = 0; i < starsMax; i++) {
             Vector2 plane = Random.insideUnitCircle;
             Vector3 plane3 = new Vector3(plane.x, plane.y, 0);
-            // points[i].position = Quaternion.FromToRotation(plane3, velocity) * plane3 * starDistance + tx.position;
-            // points[i].position = plane3 * starDistance + tx.position;
             
             points[i].position = RandomTangent(velocity) * Random.Range(0f, starMaxSpawnSize) + tx.position;
 
@@ -74,10 +72,9 @@ public class InfiniteStars : MonoBehaviour {
  
             if((points[i].position - tx.position).sqrMagnitude > starMaxDistanceSqr) 
             {
-                // points[i].position = Random.insideUnitSphere.normalized * starDistance + tx.position;
-                Vector3 velocity = GetCurrentVelocity();
-                points[i].position = RandomTangent(velocity) * Random.Range(0f, starMaxSpawnSize) + tx.position + (velocity.normalized * starSpawnDistance);
-                // points[i].position = plane3 * starDistance + tx.position;
+                points[i].position = Random.insideUnitSphere.normalized * starMaxDistance + tx.position;
+                // Vector3 velocity = GetCurrentVelocity();
+                // points[i].position = RandomTangent(velocity) * Random.Range(0f, starMaxSpawnSize) + tx.position + (velocity.normalized * starSpawnDistance);
             }
  
             if ((points[i].position - tx.position).sqrMagnitude <= starClipDistanceSqr) 
