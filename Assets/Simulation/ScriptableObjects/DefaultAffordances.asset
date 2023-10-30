@@ -29,7 +29,7 @@ MonoBehaviour:
     showTrace: 1
     showTraceIsInteractive: 1
     initialPosition:
-      X: 0
+      X: 5
       Y: 0
       Z: 0
     initialRotation:
@@ -39,7 +39,7 @@ MonoBehaviour:
     initialRotationZ: 0
     showVelocityVector: 1
     initialVelocity:
-      X: 4
+      X: 0
       Y: 0
       Z: 0
     velocityVectorIsInteractive: 1

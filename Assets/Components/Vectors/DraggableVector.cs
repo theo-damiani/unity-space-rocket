@@ -30,9 +30,11 @@ public class DraggableVector : Vector
     public float minMagnitude = 0.2f;
     public float maxMagnitude = 3f;
 
+    [Header("OnDrag Head Redraw Drag Plane")]
+    public bool redrawPlaneOnDragHead = false;
+    public Transform vectorWorldPos;
+
     // For interactions
-    private Vector3 initialPosition;
-    private Vector3 dragStartPosition;
     private Camera mainCamera;
     private Plane dragPlane;
 
@@ -75,6 +77,12 @@ public class DraggableVector : Vector
         }
         else if (clickZone == headClickZone)
         {
+            if (redrawPlaneOnDragHead)
+            {
+                Vector3 planeNormal = -mainCamera.transform.forward;
+                Vector3 planePosition = vectorWorldPos.position + components.Value;
+                DefineDragPlane(planeNormal, planePosition);
+            }
             draggingHead = true;
         }
     }
