@@ -28,7 +28,7 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private BoolVariable showVelocityEquation;
     [SerializeField] private GameObject velocityLabel;
     [SerializeField] private BoolVariable showRocketPath;
-    [SerializeField] private GameObject showRocketPathButton;
+    [SerializeField] private GameObject showRocketPathToggle;
 
     [Header("Thrust Variables")]
     [SerializeField] private BoolVariable thrustIsActive;
@@ -86,8 +86,8 @@ public class AppManager : Singleton<AppManager>
         rocketIsInteractive.Value = currentAffordances.physicalObject.isInteractive;
         // Path Renderer config:
         showRocketPath.Value = currentAffordances.physicalObject.showTrace;
-        showRocketPathButton.SetActive(currentAffordances.physicalObject.showTraceIsInteractive);
-        showRocketPathButton.GetComponent<Toggle>().isOn = currentAffordances.physicalObject.showTrace;
+        showRocketPathToggle.SetActive(currentAffordances.physicalObject.showTraceIsInteractive);
+        showRocketPathToggle.GetComponent<ToggleStartActivation>().SetToggleVisibility(currentAffordances.physicalObject.showTrace);
         // Thrust Config:
         thrustIsActive.Value = currentAffordances.thrustForce.isActive;
         thrustShowVector.Value = currentAffordances.thrustForce.showVector;
