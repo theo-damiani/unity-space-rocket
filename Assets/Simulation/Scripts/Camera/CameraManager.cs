@@ -1,26 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] private Transform target;
     public float minZ;
     public float maxZ;
+    [SerializeField] private Slider zoomSlider;
     [HideInInspector] public bool isLockedOnTarget = true;
+    private Vector3 initCameraPos;
     private Vector3 initOffsetToTarget;
     private Vector3 distanceToTarget;
 
     void Start()
     {
+        
+    }
+
+    public void InitCamera(Vector3 initPos, bool isLocked)
+    {
         // Cache the initial offset at time of load/spawn:
+        initCameraPos = initPos;
+        gameObject.transform.localPosition = initPos;
+        isLockedOnTarget = isLocked;
         SetOffsetToTarget();
     }
 
     public void SetOffsetToTarget()
     {
         initOffsetToTarget = gameObject.transform.localPosition - target.localPosition;
-        distanceToTarget = initOffsetToTarget;
+        distanceToTarget = gameObject.transform.localPosition - target.localPosition;
     }
 
     void LateUpdate()
@@ -33,7 +44,15 @@ public class CameraManager : MonoBehaviour
 
     public void ZoomAlongZ(float value)
     {
-        distanceToTarget = new Vector3(distanceToTarget.x, distanceToTarget.y, SliderToCameraZ(value));
+        if (isLockedOnTarget) 
+        {
+            distanceToTarget = new Vector3(distanceToTarget.x, distanceToTarget.y, SliderToCameraZ(value));
+        }
+        else
+        {
+            Vector3 currentCamPos = gameObject.transform.localPosition;
+            gameObject.transform.localPosition = new Vector3(currentCamPos.x, currentCamPos.y, SliderToCameraZ(value));
+        }
     }
 
     public void ZoomInAlongZ()
@@ -57,6 +76,7 @@ public class CameraManager : MonoBehaviour
         isLockedOnTarget = !isLockedOnTarget;
         if (isLockedOnTarget)
         {
+            zoomSlider.SetValueWithoutNotify(CameraToSliderZ(initCameraPos.z));
             distanceToTarget = initOffsetToTarget;
         }
     }

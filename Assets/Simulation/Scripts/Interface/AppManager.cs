@@ -49,7 +49,7 @@ public class AppManager : Singleton<AppManager>
             currentAffordances = Instantiate(defaultAffordances);
             ResetApp();
         #endif
-        
+
         #if !UNITY_EDITOR && UNITY_WEBGL
             // disable WebGLInput.captureAllKeyboardInput so elements in web page can handle keyboard inputs
             WebGLInput.captureAllKeyboardInput = false;
@@ -108,9 +108,10 @@ public class AppManager : Singleton<AppManager>
         zoomSlider.minValue = cameraManager.GetSliderMinZ();
         zoomSlider.maxValue = cameraManager.GetSliderMaxZ();
         zoomSlider.SetValueWithoutNotify(cameraManager.CameraToSliderZ(cameraZ));
-        mainCamera.transform.position = new Vector3(cameraPos.x, cameraPos.y, cameraZ);
-        mainCamera.isLockedOnTarget = currentAffordances.camera.isLockedOnObject;
-        mainCamera.SetOffsetToTarget();
+        mainCamera.InitCamera(
+            new Vector3(cameraPos.x, cameraPos.y, cameraZ),
+            currentAffordances.camera.isLockedOnObject
+        );
         cameraControls.gameObject.SetActive(currentAffordances.camera.showCameraControl);
     }
 }
