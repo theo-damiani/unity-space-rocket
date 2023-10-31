@@ -9,9 +9,6 @@ using System;
 
 public class AppManager : Singleton<AppManager>
 {
-
-    [DllImport("__Internal")]
-    private static extern void UnityIsLoaded();
     [Header("Affordances")]
     [SerializeField] private Affordances defaultAffordances;
     private Affordances currentAffordances;
@@ -52,20 +49,12 @@ public class AppManager : Singleton<AppManager>
             currentAffordances = Instantiate(defaultAffordances);
             ResetApp();
         #endif
-
-        InformReactThatUnityIsLoaded();
-    }
-
-    void InformReactThatUnityIsLoaded()
-    {
-        #if UNITY_WEBGL == true && UNITY_EDITOR == false
-            UnityIsLoaded();
-        #endif
     }
 
     public void ResetAppFromJSON(string affordanceJson)
     {
-        currentAffordances = JsonUtility.FromJson<Affordances>(affordanceJson);
+        currentAffordances = Instantiate(defaultAffordances);
+        JsonUtility.FromJsonOverwrite(affordanceJson, currentAffordances);
         ResetApp();
     }
 
@@ -113,7 +102,6 @@ public class AppManager : Singleton<AppManager>
         float cameraZ = Mathf.Clamp(cameraPos.z, cameraManager.minZ, cameraManager.maxZ);
         zoomSlider.minValue = cameraManager.GetSliderMinZ();
         zoomSlider.maxValue = cameraManager.GetSliderMaxZ();
-        Debug.Log(cameraManager.GetSliderMinZ() + " et " + cameraManager.GetSliderMaxZ());
         zoomSlider.SetValueWithoutNotify(cameraManager.CameraToSliderZ(cameraZ));
         mainCamera.transform.position = new Vector3(cameraPos.x, cameraPos.y, cameraZ);
         mainCamera.isLockedOnTarget = currentAffordances.camera.isLockedOnObject;
