@@ -49,6 +49,11 @@ public class AppManager : Singleton<AppManager>
             currentAffordances = Instantiate(defaultAffordances);
             ResetApp();
         #endif
+        
+        #if !UNITY_EDITOR && UNITY_WEBGL
+            // disable WebGLInput.captureAllKeyboardInput so elements in web page can handle keyboard inputs
+            WebGLInput.captureAllKeyboardInput = false;
+        #endif
     }
 
     public void ResetAppFromJSON(string affordanceJson)
