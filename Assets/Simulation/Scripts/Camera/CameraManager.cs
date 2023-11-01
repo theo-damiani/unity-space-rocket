@@ -84,6 +84,7 @@ public class CameraManager : MonoBehaviour
     public void SetCameraLocked(bool isLocked)
     {
         isLockedOnTarget = isLocked;
+        Debug.Log(isLockedOnTarget);
         if (isLockedOnTarget)
         {
             zoomSlider.SetValueWithoutNotify(CameraToSliderZ(initCameraPos.z));
