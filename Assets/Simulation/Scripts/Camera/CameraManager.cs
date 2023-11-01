@@ -80,6 +80,16 @@ public class CameraManager : MonoBehaviour
             distanceToTarget = initOffsetToTarget;
         }
     }
+
+    public void SetCameraLocked(bool isLocked)
+    {
+        isLockedOnTarget = isLocked;
+        if (isLockedOnTarget)
+        {
+            zoomSlider.SetValueWithoutNotify(CameraToSliderZ(initCameraPos.z));
+            distanceToTarget = initOffsetToTarget;
+        }
+    }
     
     public float GetSliderMinZ()
     {

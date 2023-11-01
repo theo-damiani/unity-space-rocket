@@ -16,6 +16,7 @@ public class AppManager : Singleton<AppManager>
     [Header("Camera")]
     [SerializeField] private CameraManager mainCamera;
     [SerializeField] private RectTransform cameraControls;
+    [SerializeField] private RectTransform cameraLockingToggle;
     [SerializeField] private RectTransform cameraZoomSlider;
 
     [Header("Main App Controls")]
@@ -102,6 +103,7 @@ public class AppManager : Singleton<AppManager>
 
         // Camera:
         Vector3 cameraPos = currentAffordances.camera.position.ToVector3();
+        cameraLockingToggle.GetComponent<ToggleStartActivation>().SetToggleVisibility(true);
         Slider zoomSlider = cameraZoomSlider.GetComponent<Slider>();
         CameraManager cameraManager = mainCamera.GetComponent<CameraManager>();
         float cameraZ = Mathf.Clamp(cameraPos.z, cameraManager.minZ, cameraManager.maxZ);
