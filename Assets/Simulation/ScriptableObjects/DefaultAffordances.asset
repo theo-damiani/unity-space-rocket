@@ -42,12 +42,12 @@ MonoBehaviour:
       Y: 0
       Z: 0
     velocityVectorIsInteractive: 0
-    showVelocityLabel: 1
-    showVelocityEquation: 1
+    showVelocityLabel: 0
+    showVelocityEquation: 0
   thrustForce:
     isActive: 0
     isInteractive: 1
     showVector: 1
-    showLabel: 1
-    showEquation: 1
+    showLabel: 0
+    showEquation: 0
     initialMagnitude: 3
