@@ -32,24 +32,6 @@ public class Asteroid : MonoBehaviour
         Vector3 directionNorm = direction.normalized;
         DrawDirectionVector(directionNorm);
     }
-
-    public static Asteroid Spawn(GameObject prefab, Transform target) {
-        // Spawn object at parent coordinates.
-        GameObject go = Instantiate(prefab, target, false);
-
-        go.transform.localRotation = Quaternion.identity;
-		go.transform.localScale = Vector3.one;
-
-        // add offset
-        Asteroid a = go.GetComponent<Asteroid>();
-
-        if (!a) 
-            a = go.AddComponent<Asteroid>();
-
-        
-
-        return a;
-    }
     
     void LateUpdate() {
         if (!aimTarget) {
@@ -59,7 +41,7 @@ public class Asteroid : MonoBehaviour
             mousePosition.z = target.transform.position.z;
             transform.position = mousePosition;
 
-            Vector3 dirNorm = (target.position - transform.position).normalized;
+            Vector3 dirNorm = GetVelocityDirection();
             DrawDirectionVector(dirNorm);
             return;
         }
@@ -79,6 +61,16 @@ public class Asteroid : MonoBehaviour
             OnHitTarget?.Invoke();
             // Write your own code to spawn an explosion / splat effect.
         } 
+    }
+
+    public Vector3 GetVelocityDirection()
+    {
+        if (target)
+        {
+            Vector3 direction = target.position - transform.position;
+            return direction.normalized;
+        }
+        return Vector3.zero;
     }
 
     private void DrawDirectionVector(Vector3 directionNormalized)
