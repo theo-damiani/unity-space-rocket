@@ -9,10 +9,18 @@ public class AsteroidManager : MonoBehaviour
 
     public void SpawnNewAsteroid()
     {
-        // currentAsteroid = Asteroid.Spawn(prefab, transform);
+        if (currentAsteroid!=null)
+        {
+            // You can spwan only one asteroid at a time.
+            return;
+        }
 
         // Spawn object at parent coordinates.
         currentAsteroid = factory.GetRandom();
+        if (currentAsteroid==null)
+        {
+            return;
+        }
         currentAsteroid.transform.parent = transform;
         currentAsteroid.transform.localRotation = Quaternion.identity;
 		currentAsteroid.transform.localScale = Vector3.one;
@@ -23,12 +31,17 @@ public class AsteroidManager : MonoBehaviour
 
     public void LaunchCurrentAsteroid()
     {
-        currentAsteroid.SetAimToTarget(true);
+        if (currentAsteroid)
+        {
+            currentAsteroid.SetAimToTarget(true);
+        }
     }
 
     private void ReturnCurrentAsteroid()
     {
         factory.ReturnObject(currentAsteroid);
+        currentAsteroid.OnHitTarget -= ReturnCurrentAsteroid;
+        currentAsteroid = null;
     }
 
     void OnDisable()

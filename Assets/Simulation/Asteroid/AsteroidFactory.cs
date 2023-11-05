@@ -35,6 +35,7 @@ public class AsteroidFactory : MonoBehaviour
         }
 
         int randomID = Random.Range(0, availableAsteroids.Count);
+        Debug.Log("0 - " + availableAsteroids.Count + " : " + randomID);
         Asteroid a = availableAsteroids[randomID];
         availableAsteroids.RemoveAt(randomID);
 

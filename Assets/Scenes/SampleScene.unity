@@ -5491,6 +5491,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 8524617352833082696, guid: eda48314a1598554aa8ad75b73266e0e, type: 3}
+  - {fileID: 2324004198542614747, guid: 17c1c47ddc6ed04f0afc313e64aecb2e, type: 3}
+  - {fileID: 6798409012914148287, guid: 7bb2a427c9e9c3dd8bdcb99570193673, type: 3}
   expandable: 0
 --- !u!4 &139215504
 Transform:
@@ -24824,7 +24826,7 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 33647279}
   - {fileID: 216957450}
+  - {fileID: 139215504}
   - {fileID: 1916861628}
   - {fileID: 1859931450}
   - {fileID: 1022051689}
-  - {fileID: 139215504}
