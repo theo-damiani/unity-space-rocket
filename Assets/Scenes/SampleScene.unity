@@ -9342,13 +9342,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611c37e89b36528d8807e37b6af644cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialTrail: {fileID: 2100000, guid: 79665003dd26893879f966dfb7b61ee1, type: 2}
-  startPrefab: {fileID: 9194182749879338465, guid: 651d7b3e712a59c238f9becb30e1154f,
-    type: 3}
   showPath:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: c82825c4d745443778fb8e630233ce24, type: 2}
+  materialTrail: {fileID: 2100000, guid: 79665003dd26893879f966dfb7b61ee1, type: 2}
+  startTrailIndicator: {fileID: 9194182749879338465, guid: 651d7b3e712a59c238f9becb30e1154f,
+    type: 3}
+  isThurstActive: {fileID: 11400000, guid: aeb0986f7bf266d389fdaa313ad2c082, type: 2}
+  startThrustIndicator: {fileID: 2919132822672481132, guid: 1fdc55fea08ec3ba5a40502f8f5a76f6,
+    type: 3}
+  endThrustIndicator: {fileID: 7480714458516767377, guid: 62c5df4b19e5a1323b2c58980096c40b,
+    type: 3}
 --- !u!114 &928279826
 MonoBehaviour:
   m_ObjectHideFlags: 0

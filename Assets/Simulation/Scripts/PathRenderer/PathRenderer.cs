@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class PathRenderer : MonoBehaviour
 {
-    [SerializeField] private Material materialTrail;
-    [SerializeField] private GameObject startPrefab;
     [SerializeField] private BoolReference showPath;
+    [SerializeField] private Material materialTrail;
+    [SerializeField] private GameObject startTrailIndicator;
+    [SerializeField] private BoolVariable isThurstActive;
+    [SerializeField] private GameObject startThrustIndicator;
+    [SerializeField] private GameObject endThrustIndicator;
     private TrailRenderer trailRenderer;
     private GameObject startPoint;
     private bool isStartPointSet = false;
+    private List<GameObject> startThrustPoints;
+    private List<GameObject> endThrustPoints;
+    private bool isStartThrustIndicatorSet = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +42,10 @@ public class PathRenderer : MonoBehaviour
         trailRenderer.widthCurve = curve;
 
         trailRenderer.sortingOrder = 1;
+
+        isStartThrustIndicatorSet = false;
+        startThrustPoints = new List<GameObject>();
+        endThrustPoints = new List<GameObject>();
     }
 
     void Update()
@@ -47,10 +58,29 @@ public class PathRenderer : MonoBehaviour
             }
 
             Vector3 startPosition = trailRenderer.GetPosition(trailRenderer.positionCount-1);
-            startPoint = Instantiate(startPrefab);
+            startPoint = Instantiate(startTrailIndicator);
             startPoint.transform.localPosition = startPosition;
             isStartPointSet = true;
+
+            return;
         } 
+
+        if ((!isStartThrustIndicatorSet) && isThurstActive.Value)
+        {
+            GameObject startThurstPoint = Instantiate(startThrustIndicator);
+            startThurstPoint.transform.localPosition = transform.localPosition;
+            startThrustPoints.Add(startThurstPoint);
+
+            isStartThrustIndicatorSet = true;
+        }
+
+        if (isStartThrustIndicatorSet && (!isThurstActive.Value))
+        {
+            GameObject endThurstPoint = Instantiate(endThrustIndicator);
+            endThurstPoint.transform.localPosition = transform.localPosition;
+            endThrustPoints.Add(endThurstPoint);
+            isStartThrustIndicatorSet = false;
+        }
     }
 
     public void OnUpdateShowPath()
@@ -78,5 +108,23 @@ public class PathRenderer : MonoBehaviour
             Destroy(startPoint);
             isStartPointSet = false;
         }
+
+        if (startThrustPoints!=null)
+        {
+            DestroyGameObjectList(startThrustPoints);
+        }
+        if (endThrustPoints!=null)
+        {
+            DestroyGameObjectList(endThrustPoints);
+        }
+    }
+
+    private void DestroyGameObjectList(List<GameObject> gameObjects)
+    {
+        for (int i = 0; i < gameObjects.Count; i++)
+        {
+            Destroy(gameObjects[i]);
+        }
+        gameObjects.Clear();
     }
 }

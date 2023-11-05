@@ -26,8 +26,8 @@ MonoBehaviour:
   showReferenceFrame: 1
   physicalObject:
     isInteractiveUp: 1
-    isInteractiveDown: 1
-    isInteractiveRight: 1
+    isInteractiveDown: 0
+    isInteractiveRight: 0
     isInteractiveLeft: 1
     showTrace: 0
     showTraceIsInteractive: 1
