@@ -13,6 +13,8 @@ public class Affordances : ScriptableObject
     public bool showReferenceFrame;
     public A_PhysicalObject physicalObject;
     public A_Force thrustForce;
+    public bool showAsteroidButton;
+    public float asteroidCollisionForce;
 }
 
 [Serializable]
@@ -26,7 +28,10 @@ public class A_Camera
 [Serializable]
 public class A_PhysicalObject
 {
-    public bool isInteractive;
+    public bool isInteractiveUp;
+    public bool isInteractiveDown;
+    public bool isInteractiveRight;
+    public bool isInteractiveLeft;
     public bool showTrace;
     public bool showTraceIsInteractive;
     public A_Vector3 initialPosition;

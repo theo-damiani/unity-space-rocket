@@ -25,7 +25,10 @@ public class AppManager : Singleton<AppManager>
 
     [Header("Rocket Variables")]
     [SerializeField] private GameObject rocket;
-    [SerializeField] private BoolVariable rocketIsInteractive;
+    [SerializeField] private BoolVariable rocketIsInteractiveUp;
+    [SerializeField] private BoolVariable rocketIsInteractiveDown;
+    [SerializeField] private BoolVariable rocketIsInteractiveLeft;
+    [SerializeField] private BoolVariable rocketIsInteractiveRight;
     [SerializeField] private Vector3Variable rocketVelocity;
     [SerializeField] private GameObject rocketVelocityVector;
     [SerializeField] private BoolVariable showVelocityEquation;
@@ -41,8 +44,16 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private GameObject thrustShowLabel;
     [SerializeField] private BoolVariable thrustShowEquation;
 
+    [Header("Rocket Controls")]
+    [SerializeField] private RectTransform keyUpBtn;
+    [SerializeField] private RectTransform keyDownBtn;
+    [SerializeField] private RectTransform keyLeftBtn;
+    [SerializeField] private RectTransform keyRightBtn;
+
     [Header("Extra")]
     [SerializeField] private GameObject referenceFrame;
+    [SerializeField] private RectTransform asteroidButton;
+    [SerializeField] private FloatVariable asteroidCollisionSpeed;
 
     void Start()
     {
@@ -83,7 +94,16 @@ public class AppManager : Singleton<AppManager>
 
         velocityLabel.SetActive(currentAffordances.physicalObject.showVelocityLabel);
         showVelocityEquation.Value = currentAffordances.physicalObject.showVelocityEquation;
-        rocketIsInteractive.Value = currentAffordances.physicalObject.isInteractive;
+        rocketIsInteractiveUp.Value = currentAffordances.physicalObject.isInteractiveUp;
+        rocketIsInteractiveDown.Value = currentAffordances.physicalObject.isInteractiveDown;
+        rocketIsInteractiveRight.Value = currentAffordances.physicalObject.isInteractiveRight;
+        rocketIsInteractiveLeft.Value = currentAffordances.physicalObject.isInteractiveLeft;
+
+        keyUpBtn.gameObject.SetActive(currentAffordances.physicalObject.isInteractiveUp);
+        keyDownBtn.gameObject.SetActive(currentAffordances.physicalObject.isInteractiveDown);
+        keyLeftBtn.gameObject.SetActive(currentAffordances.physicalObject.isInteractiveLeft);
+        keyRightBtn.gameObject.SetActive(currentAffordances.physicalObject.isInteractiveRight);
+
         // Path Renderer config:
         showRocketPath.Value = currentAffordances.physicalObject.showTrace;
         showRocketPathToggle.gameObject.SetActive(currentAffordances.physicalObject.showTraceIsInteractive);
@@ -98,8 +118,6 @@ public class AppManager : Singleton<AppManager>
         thrustShowEquation.Value = currentAffordances.thrustForce.showEquation;
         thrustShowLabel.SetActive(currentAffordances.thrustForce.showLabel);
         thrustIsInteractive.Value = currentAffordances.thrustForce.isInteractive;
-        // Extra:
-        referenceFrame.SetActive(currentAffordances.showReferenceFrame);
 
         // Camera:
         Vector3 cameraPos = currentAffordances.camera.position.ToVector3();
@@ -115,5 +133,10 @@ public class AppManager : Singleton<AppManager>
             currentAffordances.camera.isLockedOnObject
         );
         cameraControls.gameObject.SetActive(currentAffordances.camera.showCameraControl);
+        
+        // Extra:
+        referenceFrame.SetActive(currentAffordances.showReferenceFrame);
+        asteroidButton.gameObject.SetActive(currentAffordances.showAsteroidButton);
+        asteroidCollisionSpeed.Value = currentAffordances.asteroidCollisionForce;
     }
 }

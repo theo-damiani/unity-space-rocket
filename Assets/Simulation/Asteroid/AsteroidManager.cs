@@ -5,7 +5,7 @@ using UnityEngine;
 public class AsteroidManager : MonoBehaviour
 {
     [SerializeField] private AsteroidFactory factory;
-    public float collisionSpeed = 3;
+    public FloatReference collisionSpeed;
     private Asteroid currentAsteroid;
     private Rigidbody rocketRigidbody;
 
@@ -48,7 +48,7 @@ public class AsteroidManager : MonoBehaviour
     {
         factory.ReturnObject(currentAsteroid);
         currentAsteroid.OnHitTarget -= ReturnCurrentAsteroid;
-        rocketRigidbody.AddForce(currentAsteroid.GetVelocityDirection()*collisionSpeed, ForceMode.VelocityChange);
+        rocketRigidbody.AddForce(currentAsteroid.GetVelocityDirection()*collisionSpeed.Value, ForceMode.VelocityChange);
         currentAsteroid = null;
     }
 

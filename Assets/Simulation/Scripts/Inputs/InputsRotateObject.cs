@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class InputsRotateObject : MonoBehaviour
 {
-    public BoolReference isActive;
+    public BoolReference isUpKeyActive;
+    public BoolReference isDownKeyActive;
+    public BoolReference isLeftKeyActive;
+    public BoolReference isRightKeyActive;
     [SerializeField] private List<Transform> transforms;
     [SerializeField] private Vector3 rotationLocalAxis;
     [SerializeField] private float rotationScale;
@@ -14,25 +17,25 @@ public class InputsRotateObject : MonoBehaviour
 
     void Start()
     {
-        enabled = isActive.Value;
+        enabled = isUpKeyActive.Value | isDownKeyActive.Value | isLeftKeyActive.Value | isRightKeyActive.Value;
         localRotationRight = rotationLocalAxis*rotationScale;
         localRotationUp = Vector3.right*rotationScale;
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (isRightKeyActive.Value && Input.GetKey(KeyCode.RightArrow))
         {
             RotateAll(localRotationRight);
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (isLeftKeyActive.Value && Input.GetKey(KeyCode.LeftArrow))
         {
             RotateAll(-localRotationRight);
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (isUpKeyActive.Value && Input.GetKey(KeyCode.UpArrow))
         {
             RotateAll(localRotationUp);
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (isDownKeyActive.Value && Input.GetKey(KeyCode.DownArrow))
         {
             RotateAll(-localRotationUp);
         }
@@ -40,22 +43,26 @@ public class InputsRotateObject : MonoBehaviour
 
     public void PressKeyUp()
     {
-        RotateAll(localRotationUp);
+        if (isUpKeyActive.Value)
+            RotateAll(localRotationUp);
     }
 
     public void PressKeyDown()
     {
-        RotateAll(-localRotationUp);
+        if (isDownKeyActive.Value)
+            RotateAll(-localRotationUp);
     }
 
     public void PressKeyLeft()
     {
-        RotateAll(-localRotationRight);
+        if (isLeftKeyActive.Value)
+            RotateAll(-localRotationRight);
     }
 
     public void PressKeyRight()
     {
-        RotateAll(localRotationRight);
+        if (isRightKeyActive.Value)
+            RotateAll(localRotationRight);
     }
 
     private void RotateAll(Vector3 rot)
