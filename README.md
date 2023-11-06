@@ -21,6 +21,12 @@ The application covers the basics of Newton's laws. In concrete terms, a space r
 
 Special thanks to [Austin Peel](https://github.com/austinpeel/) for his advice during development, and for enabling the reuse of some of his own Unity components.
 
+## Attribution
+
+- Asteroid texture by <a href="https://www.freepik.com/free-photo/abstract-wood-texture-background_5820207.htm#query=asteroid%20texture&position=13&from_view=keyword&track=ais">Freepik</a> and <a href="https://www.freepik.com/free-photo/dark-gray-earth-texture_1037618.htm#query=asteroid%20texture&position=18&from_view=search&track=ais">kues1</a> on Freepik. (Free License)
+
 ## License
 
 Distributed under the TBD...
+
+
