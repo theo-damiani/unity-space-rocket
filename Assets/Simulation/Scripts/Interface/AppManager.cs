@@ -55,12 +55,12 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private RectTransform asteroidButton;
     [SerializeField] private FloatVariable asteroidCollisionSpeed;
 
-    void Start()
+    public override void Awake()
     {
-        #if UNITY_EDITOR == true
-            currentAffordances = Instantiate(defaultAffordances);
-            ResetApp();
-        #endif
+        base.Awake();
+        
+        currentAffordances = Instantiate(defaultAffordances);
+        ResetApp();
 
         #if !UNITY_EDITOR && UNITY_WEBGL
             // disable WebGLInput.captureAllKeyboardInput so elements in web page can handle keyboard inputs
