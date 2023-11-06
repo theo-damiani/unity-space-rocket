@@ -59,7 +59,6 @@ public class Asteroid : MonoBehaviour
             // To close to target destroy asteroid.
             // Destroy(gameObject);
             OnHitTarget?.Invoke();
-            // Write your own code to spawn an explosion / splat effect.
         } 
     }
 

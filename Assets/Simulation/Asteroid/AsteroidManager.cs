@@ -5,6 +5,8 @@ using UnityEngine;
 public class AsteroidManager : MonoBehaviour
 {
     [SerializeField] private AsteroidFactory factory;
+    [SerializeField] private ParticleSystem asteroidCollisionEffect;
+    [SerializeField] private RectTransform spawnAsteroidButton;
     public FloatReference collisionSpeed;
     private Asteroid currentAsteroid;
     private Rigidbody rocketRigidbody;
@@ -28,12 +30,15 @@ public class AsteroidManager : MonoBehaviour
         {
             return;
         }
+        
         currentAsteroid.transform.parent = transform;
         currentAsteroid.transform.localRotation = Quaternion.identity;
 		currentAsteroid.transform.localScale = Vector3.one;
         currentAsteroid.InitAsteroid(transform);
         currentAsteroid.OnHitTarget += ReturnCurrentAsteroid;
         currentAsteroid.gameObject.SetActive(true);
+
+        spawnAsteroidButton.gameObject.SetActive(false);
     }
 
     public void LaunchCurrentAsteroid()
@@ -46,9 +51,17 @@ public class AsteroidManager : MonoBehaviour
 
     private void ReturnCurrentAsteroid()
     {
+        // Play collision effect
+        asteroidCollisionEffect.transform.position = currentAsteroid.transform.position;
+        asteroidCollisionEffect.Play();
+
+        // Add collision force to rocket
+        rocketRigidbody.AddForce(currentAsteroid.GetVelocityDirection()*collisionSpeed.Value, ForceMode.VelocityChange);
+
+        // Return asteroid to the pool
         factory.ReturnObject(currentAsteroid);
         currentAsteroid.OnHitTarget -= ReturnCurrentAsteroid;
-        rocketRigidbody.AddForce(currentAsteroid.GetVelocityDirection()*collisionSpeed.Value, ForceMode.VelocityChange);
+        spawnAsteroidButton.gameObject.SetActive(true);
         currentAsteroid = null;
     }
 
