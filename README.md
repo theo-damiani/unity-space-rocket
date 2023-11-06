@@ -10,6 +10,13 @@ The aim of this application is to offer digital support enabling teachers to bui
 
 The application covers the basics of Newton's laws. In concrete terms, a space rocket is simulated and users can play with the rocket's initial velocity and thrust force.
 
+<p align="center">
+<img
+  src="screenshot_sim.png"
+  alt="Screenshot Unity Home Scene"
+  width="400">
+</p>
+
 ## Acknowledgment
 
 Special thanks to [Austin Peel](https://github.com/austinpeel/) for his advice during development, and for enabling the reuse of some of his own Unity components.
