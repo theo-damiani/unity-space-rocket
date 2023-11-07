@@ -24,7 +24,7 @@ public class Asteroid : MonoBehaviour
 
         // config asteroid's mesh
         asteroidMesh.transform.SetLocalPositionAndRotation(Vector3.zero, UnityEngine.Random.rotation);
-		asteroidMesh.transform.localScale = Vector3.one * UnityEngine.Random.Range(30f, 60f);
+		asteroidMesh.transform.localScale = Vector3.one * UnityEngine.Random.Range(0.15f, 0.35f);
 
         // config vector
         vector.transform.rotation = Quaternion.identity;
