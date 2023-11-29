@@ -21,6 +21,7 @@ public class Affordances : ScriptableObject
 public class A_Camera
 {
     public A_Vector3 position;
+    public A_Vector3 rotation; // in degrees!
     public bool showCameraControl;
     public bool isLockedOnObject;
 }

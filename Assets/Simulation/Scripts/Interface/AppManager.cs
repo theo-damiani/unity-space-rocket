@@ -122,16 +122,19 @@ public class AppManager : Singleton<AppManager>
         // Camera:
         Vector3 cameraPos = currentAffordances.camera.position.ToVector3();
         cameraLockingToggle.SetWithoutRaising(currentAffordances.camera.isLockedOnObject);
+
         Slider zoomSlider = cameraZoomSlider.GetComponent<Slider>();
-        CameraManager cameraManager = mainCamera.GetComponent<CameraManager>();
-        float cameraZ = Mathf.Clamp(cameraPos.z, cameraManager.minZ, cameraManager.maxZ);
-        zoomSlider.minValue = cameraManager.GetSliderMinZ();
-        zoomSlider.maxValue = cameraManager.GetSliderMaxZ();
-        zoomSlider.SetValueWithoutNotify(cameraManager.CameraToSliderZ(cameraZ));
+        float minDistanceToObject = (rocket.transform.localScale.x + rocket.transform.localScale.y + rocket.transform.localScale.z)/3;
         mainCamera.InitCamera(
-            new Vector3(cameraPos.x, cameraPos.y, cameraZ),
-            currentAffordances.camera.isLockedOnObject
+            rocket.transform,
+            cameraPos,
+            currentAffordances.camera.isLockedOnObject,
+            minDistanceToObject,
+            zoomSlider
         );
+
+        mainCamera.transform.localRotation = Quaternion.Euler(currentAffordances.camera.rotation.ToVector3());
+
         cameraControls.gameObject.SetActive(currentAffordances.camera.showCameraControl);
         
         // Extra:
