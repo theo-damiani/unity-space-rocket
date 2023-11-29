@@ -49,6 +49,7 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private RectTransform keyDownBtn;
     [SerializeField] private RectTransform keyLeftBtn;
     [SerializeField] private RectTransform keyRightBtn;
+    [SerializeField] private VerticalLayoutGroup keyBtnLayout;
 
     [Header("Extra")]
     [SerializeField] private GameObject referenceFrame;
@@ -103,6 +104,24 @@ public class AppManager : Singleton<AppManager>
         keyDownBtn.gameObject.SetActive(currentAffordances.physicalObject.isInteractiveDown);
         keyLeftBtn.gameObject.SetActive(currentAffordances.physicalObject.isInteractiveLeft);
         keyRightBtn.gameObject.SetActive(currentAffordances.physicalObject.isInteractiveRight);
+
+        if (currentAffordances.physicalObject.isInteractiveUp)
+        {
+            keyBtnLayout.padding.top = 0;
+        }
+        else
+        {
+            keyBtnLayout.padding.top = 20;
+        }
+
+        if (currentAffordances.physicalObject.isInteractiveDown)
+        {
+            keyBtnLayout.padding.bottom = 0;
+        }
+        else
+        {
+            keyBtnLayout.padding.bottom = 20;
+        }
 
         // Path Renderer config:
         showRocketPath.Value = currentAffordances.physicalObject.showTrace;
