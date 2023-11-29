@@ -33,8 +33,8 @@ MonoBehaviour:
     isInteractiveDown: 1
     isInteractiveRight: 1
     isInteractiveLeft: 1
-    showTrace: 1
-    showTraceIsInteractive: 0
+    showTrace: 0
+    showTraceIsInteractive: 1
     initialPosition:
       X: 0
       Y: 0
@@ -50,13 +50,13 @@ MonoBehaviour:
       Z: 0
     velocityVectorIsInteractive: 1
     showVelocityLabel: 0
-    showVelocityEquation: 0
+    showVelocityEquation: 1
   thrustForce:
     isActive: 0
     isInteractive: 1
     showVector: 1
     showLabel: 0
-    showEquation: 0
+    showEquation: 1
     initialMagnitude: 3
   showAsteroidButton: 1
   asteroidCollisionForce: 2

@@ -107,7 +107,7 @@ public class AppManager : Singleton<AppManager>
         // Path Renderer config:
         showRocketPath.Value = currentAffordances.physicalObject.showTrace;
         showRocketPathToggle.gameObject.SetActive(currentAffordances.physicalObject.showTraceIsInteractive);
-        showRocketPathToggle.GetComponent<ToggleStartActivation>().SetToggleVisibility(currentAffordances.physicalObject.showTrace);
+        showRocketPathToggle.GetComponent<ToggleIcons>().SetWithoutRaising(currentAffordances.physicalObject.showTrace);
         // Thrust Config:
         thrustIsActive.Value = currentAffordances.thrustForce.isActive;
         thrustShowVector.Value = currentAffordances.thrustForce.showVector;

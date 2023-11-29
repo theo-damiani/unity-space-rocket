@@ -6,15 +6,19 @@ using UnityEngine.UI;
 public class KeyArrowPlayer : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private Image button;
-    [SerializeField] private Color onPressed;
+    [SerializeField] private Image background;
+    [SerializeField] private Color onPressedButton;
+    [SerializeField] private Color onPressedBackground;
     [SerializeField] private KeyCode key;
     [SerializeField] private UnityEvent onPressedEvents;
-    private Color startColor;
+    private Color startColorButton;
+    private Color startColorBackground;
     private bool pointerIsDown;
 
     void Start()
     {
-        startColor = button.color;
+        startColorButton = button.color;
+        startColorBackground = background.color;
     }
 
     void Update()
@@ -37,12 +41,14 @@ public class KeyArrowPlayer : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     }
     public void ChangeColorOnPointerDown()
     {
-        button.color = onPressed;
+        button.color = onPressedButton;
+        background.color = onPressedBackground;
     }
 
     public void ChangeColorOnPointerUp()
     {
-        button.color = startColor;
+        button.color = startColorButton;
+        background.color = startColorBackground;
     }
 
     public void OnPointerDown(PointerEventData eventData)
