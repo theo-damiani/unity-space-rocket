@@ -166,6 +166,14 @@ public class AppManager : Singleton<AppManager>
         equationsManager.Start();
 
         // UI position
+        bool rocketPanelActivation = currentAffordances.showAsteroidButton &&
+            currentAffordances.physicalObject.isInteractiveUp &&
+            currentAffordances.physicalObject.isInteractiveDown &&
+            currentAffordances.physicalObject.isInteractiveLeft &&
+            currentAffordances.physicalObject.isInteractiveRight &&
+            currentAffordances.thrustForce.isInteractive;
+        asteroidButton.parent.gameObject.SetActive(rocketPanelActivation);
+        
         if (!currentAffordances.showPlayButton && !currentAffordances.showResetButton)
         {
             metaPanel.gameObject.SetActive(false);
