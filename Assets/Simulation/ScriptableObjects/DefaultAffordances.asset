@@ -27,7 +27,7 @@ MonoBehaviour:
       Z: 0
     showCameraControl: 1
     isLockedOnObject: 1
-  showReferenceFrame: 0
+  showReferenceFrame: 1
   physicalObject:
     isInteractiveUp: 1
     isInteractiveDown: 1
