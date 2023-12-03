@@ -18,7 +18,7 @@ public class LabelPositionManager : MonoBehaviour
     [SerializeField] private float startY;
     private int nbOfItemsActive;
 
-    void Start()
+    public void Start()
     {
         float showingY = 0;
         nbOfItemsActive = 0;

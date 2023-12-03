@@ -22,6 +22,7 @@ public class AppManager : Singleton<AppManager>
     [Header("Main App Controls")]
     [SerializeField] private RectTransform playButton;
     [SerializeField] private RectTransform resetButton;
+    [SerializeField] private RectTransform metaPanel;
 
     [Header("Rocket Variables")]
     [SerializeField] private GameObject rocket;
@@ -55,6 +56,7 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private GameObject referenceFrame;
     [SerializeField] private RectTransform asteroidButton;
     [SerializeField] private FloatVariable asteroidCollisionSpeed;
+    [SerializeField] private LabelPositionManager equationsManager;
 
     public override void Awake()
     {
@@ -160,5 +162,21 @@ public class AppManager : Singleton<AppManager>
         referenceFrame.SetActive(currentAffordances.showReferenceFrame);
         asteroidButton.gameObject.SetActive(currentAffordances.showAsteroidButton);
         asteroidCollisionSpeed.Value = currentAffordances.asteroidCollisionForce;
+
+        equationsManager.Start();
+
+        // UI position
+        if (!currentAffordances.showPlayButton && !currentAffordances.showResetButton)
+        {
+            metaPanel.gameObject.SetActive(false);
+            cameraControls.GetComponent<RectTransform>().anchoredPosition = new Vector2(25, -25);
+        }
+        else
+        {
+            metaPanel.gameObject.SetActive(true);
+            cameraControls.GetComponent<RectTransform>().anchoredPosition = new Vector2(25, -110);
+        }
+        velocityLabel.GetComponent<VectorLabel>().SetSpriteOrientation();
+        thrustShowLabel.GetComponent<VectorLabel>().SetSpriteOrientation();
     }
 }

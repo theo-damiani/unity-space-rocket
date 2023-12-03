@@ -6,6 +6,12 @@ public class VectorLabel : MonoBehaviour
 {
     [SerializeField] private Vector vector;
     [SerializeField] private float offset;
+    [SerializeField] private Camera mainCamera;
+
+    public void SetSpriteOrientation()
+    {
+        transform.LookAt(mainCamera.transform);
+    }
 
     void LateUpdate()
     {

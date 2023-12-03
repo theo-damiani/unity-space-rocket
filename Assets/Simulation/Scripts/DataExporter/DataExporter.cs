@@ -89,11 +89,14 @@ public class DataExporter : MonoBehaviour
     {
         if (listOfJsonData.Count <= maxSize)
         {
+            Vector3 posFixed = new(_rigidbody.transform.position.x, _rigidbody.transform.position.z, _rigidbody.transform.position.y);
+            Vector3 rotFixed = new(_rigidbody.transform.rotation.eulerAngles.x, _rigidbody.transform.rotation.eulerAngles.z, _rigidbody.transform.rotation.eulerAngles.y);
+            Vector3 velFixed = new(_rigidbody.velocity.x, _rigidbody.velocity.z, _rigidbody.velocity.y);
             DataHolder data = new(
                     Time.realtimeSinceStartup - timeAtStart,
-                    _rigidbody.transform.transform.position,
-                    _rigidbody.transform.rotation.eulerAngles,
-                    _rigidbody.velocity
+                    posFixed,
+                    rotFixed,
+                    velFixed
                 );
 
             listOfJsonData.Add(JsonUtility.ToJson(data));
