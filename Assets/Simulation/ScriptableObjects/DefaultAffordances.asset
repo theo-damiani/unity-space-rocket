@@ -49,13 +49,13 @@ MonoBehaviour:
       Y: 0
       Z: 0
     velocityVectorIsInteractive: 1
-    showVelocityLabel: 0
+    showVelocityLabel: 1
     showVelocityEquation: 1
   thrustForce:
     isActive: 0
     isInteractive: 1
     showVector: 1
-    showLabel: 0
+    showLabel: 1
     showEquation: 1
     initialMagnitude: 3
   showAsteroidButton: 1
