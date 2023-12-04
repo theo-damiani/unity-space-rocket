@@ -15,7 +15,7 @@ public class InputsRotateObject : MonoBehaviour
     private Vector3 localRotationRight;
     private Vector3 localRotationUp;
 
-    void Start()
+    public void Start()
     {
         enabled = isUpKeyActive.Value | isDownKeyActive.Value | isLeftKeyActive.Value | isRightKeyActive.Value;
         localRotationRight = rotationLocalAxis*rotationScale;

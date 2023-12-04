@@ -57,7 +57,7 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private RectTransform asteroidButton;
     [SerializeField] private FloatVariable asteroidCollisionSpeed;
     [SerializeField] private LabelPositionManager equationsManager;
-    [SerializeField] private CallEvents inputsArrowManager;
+    [SerializeField] private InputsRotateObject inputsArrowManager;
 
     public override void Awake()
     {

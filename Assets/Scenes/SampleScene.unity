@@ -478,7 +478,7 @@ MonoBehaviour:
   asteroidCollisionSpeed: {fileID: 11400000, guid: b61172b187cc80923a13a85960fede16,
     type: 2}
   equationsManager: {fileID: 1705330845}
-  inputsArrowManager: {fileID: 0}
+  inputsArrowManager: {fileID: 216957449}
 --- !u!4 &33647279
 Transform:
   m_ObjectHideFlags: 0
