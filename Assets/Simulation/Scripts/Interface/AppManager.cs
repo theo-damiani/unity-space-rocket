@@ -107,6 +107,15 @@ public class AppManager : Singleton<AppManager>
         keyLeftBtn.gameObject.SetActive(currentAffordances.physicalObject.isInteractiveLeft);
         keyRightBtn.gameObject.SetActive(currentAffordances.physicalObject.isInteractiveRight);
 
+        if (currentAffordances.physicalObject.isInteractiveLeft || currentAffordances.physicalObject.isInteractiveRight)
+        {
+            keyLeftBtn.parent.gameObject.SetActive(true);
+        }
+        else
+        {
+            keyLeftBtn.parent.gameObject.SetActive(false);
+        }
+
         if (currentAffordances.physicalObject.isInteractiveUp)
         {
             keyBtnLayout.padding.top = 0;
