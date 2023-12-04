@@ -10,7 +10,7 @@ public class CallEvents : MonoBehaviour
     public UnityEvent responseOnKeyDown;
     public UnityEvent responseOnKeyUp;
 
-    void Start()
+    public void Start()
     {
         enabled = isActive.Value;
     }

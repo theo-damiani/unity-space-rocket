@@ -57,6 +57,7 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private RectTransform asteroidButton;
     [SerializeField] private FloatVariable asteroidCollisionSpeed;
     [SerializeField] private LabelPositionManager equationsManager;
+    [SerializeField] private CallEvents inputsArrowManager;
 
     public override void Awake()
     {
@@ -178,7 +179,9 @@ public class AppManager : Singleton<AppManager>
         asteroidButton.gameObject.SetActive(currentAffordances.showAsteroidButton);
         asteroidCollisionSpeed.Value = currentAffordances.asteroidCollisionForce;
 
-        equationsManager.Start();
+        equationsManager.Init();
+
+        inputsArrowManager.Start();
 
         // UI position
         bool rocketPanelActivation = currentAffordances.showAsteroidButton ||
