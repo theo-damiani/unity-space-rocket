@@ -31,8 +31,8 @@ MonoBehaviour:
   physicalObject:
     isInteractiveUp: 1
     isInteractiveDown: 1
-    isInteractiveRight: 1
-    isInteractiveLeft: 1
+    isInteractiveRight: 0
+    isInteractiveLeft: 0
     showTrace: 0
     showTraceIsInteractive: 1
     initialPosition:

@@ -122,7 +122,7 @@ public class AppManager : Singleton<AppManager>
         }
         else
         {
-            keyBtnLayout.padding.top = 20;
+            keyBtnLayout.padding.top = 10;
         }
 
         if (currentAffordances.physicalObject.isInteractiveDown)
@@ -131,8 +131,14 @@ public class AppManager : Singleton<AppManager>
         }
         else
         {
-            keyBtnLayout.padding.bottom = 20;
+            keyBtnLayout.padding.bottom = 10;
         }
+
+        bool rocketInputsActivation = currentAffordances.physicalObject.isInteractiveUp ||
+            currentAffordances.physicalObject.isInteractiveDown ||
+            currentAffordances.physicalObject.isInteractiveLeft ||
+            currentAffordances.physicalObject.isInteractiveRight;
+        keyUpBtn.parent.gameObject.SetActive(rocketInputsActivation);
 
         // Path Renderer config:
         showRocketPath.Value = currentAffordances.physicalObject.showTrace;
