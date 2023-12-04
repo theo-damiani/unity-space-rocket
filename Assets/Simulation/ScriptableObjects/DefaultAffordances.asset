@@ -50,7 +50,7 @@ MonoBehaviour:
       Z: 0
     velocityVectorIsInteractive: 1
     showVelocityLabel: 1
-    showVelocityEquation: 1
+    showVelocityEquation: 0
   thrustForce:
     isActive: 0
     isInteractive: 1

@@ -22,6 +22,7 @@ public class AppManager : Singleton<AppManager>
     [Header("Main App Controls")]
     [SerializeField] private RectTransform playButton;
     [SerializeField] private RectTransform resetButton;
+    [SerializeField] private BoolVariable isResetEnable;
     [SerializeField] private RectTransform metaPanel;
 
     [Header("Rocket Variables")]
@@ -58,6 +59,8 @@ public class AppManager : Singleton<AppManager>
     [SerializeField] private FloatVariable asteroidCollisionSpeed;
     [SerializeField] private LabelPositionManager equationsManager;
     [SerializeField] private InputsRotateObject inputsArrowManager;
+    [SerializeField] private CallEvents callOnSpaceEvent;
+    [SerializeField] private CallEvents callOnBackSpaceEvent;
 
     public override void Awake()
     {
@@ -84,6 +87,7 @@ public class AppManager : Singleton<AppManager>
         // Main control config:
         playButton.gameObject.SetActive(currentAffordances.showPlayButton);
         resetButton.gameObject.SetActive(currentAffordances.showResetButton);
+        isResetEnable.Value = currentAffordances.showResetButton;
         // Rocket config:
         rocket.transform.SetPositionAndRotation(currentAffordances.physicalObject.initialPosition.ToVector3(), Quaternion.identity);
         rocket.transform.Find("RocketObject").transform.rotation = Quaternion.Euler(currentAffordances.physicalObject.initialRotation.ToVector3());
@@ -182,6 +186,9 @@ public class AppManager : Singleton<AppManager>
         equationsManager.Init();
 
         inputsArrowManager.Start();
+
+        callOnSpaceEvent.Start();
+        callOnBackSpaceEvent.Start();
 
         // UI position
         bool rocketPanelActivation = currentAffordances.showAsteroidButton ||

@@ -444,6 +444,7 @@ MonoBehaviour:
   cameraZoomSlider: {fileID: 771446531}
   playButton: {fileID: 5354190819895511462}
   resetButton: {fileID: 7176590247440815231}
+  isResetEnable: {fileID: 11400000, guid: 87960e999a4cdaee88e93d78671ab7e6, type: 2}
   metaPanel: {fileID: 181376894}
   rocket: {fileID: 928279819}
   rocketIsInteractiveUp: {fileID: 11400000, guid: 06322426333642b69a17d4954f1fb8d8,
@@ -479,6 +480,8 @@ MonoBehaviour:
     type: 2}
   equationsManager: {fileID: 1705330845}
   inputsArrowManager: {fileID: 216957449}
+  callOnSpaceEvent: {fileID: 216957448}
+  callOnBackSpaceEvent: {fileID: 1006063656}
 --- !u!4 &33647279
 Transform:
   m_ObjectHideFlags: 0
@@ -1232,7 +1235,6 @@ GameObject:
   - component: {fileID: 216957450}
   - component: {fileID: 216957449}
   - component: {fileID: 216957448}
-  - component: {fileID: 216957451}
   m_Layer: 0
   m_Name: InputsManager
   m_TagString: Untagged
@@ -1335,41 +1337,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &216957451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 216957447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad2e26c2fd37d375c8e419354be7a208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
-  key: 8
-  responseOnKeyDown:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 33647278}
-        m_TargetAssemblyTypeName: AppManager, Assembly-CSharp
-        m_MethodName: ResetApp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  responseOnKeyUp:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!21 &235812185
 Material:
   serializedVersion: 8
@@ -7621,7 +7588,7 @@ PrefabInstance:
     - target: {fileID: 7286456333041016512, guid: 9eac30bb48f435929b47c0ee9be89f0a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30.399994
+      value: 30.4
       objectReference: {fileID: 0}
     - target: {fileID: 7286456333041016512, guid: 9eac30bb48f435929b47c0ee9be89f0a,
         type: 3}
@@ -9237,6 +9204,73 @@ ParticleSystem:
     type: 3}
   m_PrefabInstance: {fileID: 1499914142}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1006063655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1006063657}
+  - component: {fileID: 1006063656}
+  m_Layer: 0
+  m_Name: InputsManager2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1006063656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006063655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2e26c2fd37d375c8e419354be7a208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive:
+    UseConstant: 0
+    ConstantValue: 1
+    Variable: {fileID: 11400000, guid: 87960e999a4cdaee88e93d78671ab7e6, type: 2}
+  key: 8
+  responseOnKeyDown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 33647278}
+        m_TargetAssemblyTypeName: AppManager, Assembly-CSharp
+        m_MethodName: ResetApp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  responseOnKeyUp:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1006063657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006063655}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1022051686
 GameObject:
   m_ObjectHideFlags: 0
@@ -16166,7 +16200,7 @@ PrefabInstance:
     - target: {fileID: 470705368482748243, guid: 9eac30bb48f435929b47c0ee9be89f0a,
         type: 3}
       propertyPath: m_text
-      value: -3.91
+      value: 0.00
       objectReference: {fileID: 0}
     - target: {fileID: 470705368482748243, guid: 9eac30bb48f435929b47c0ee9be89f0a,
         type: 3}
@@ -16218,7 +16252,7 @@ PrefabInstance:
     - target: {fileID: 1063259379611454955, guid: 9eac30bb48f435929b47c0ee9be89f0a,
         type: 3}
       propertyPath: m_text
-      value: -4.99
+      value: 0.00
       objectReference: {fileID: 0}
     - target: {fileID: 1063259379611454955, guid: 9eac30bb48f435929b47c0ee9be89f0a,
         type: 3}
@@ -16479,7 +16513,7 @@ PrefabInstance:
     - target: {fileID: 5856563263039264902, guid: 9eac30bb48f435929b47c0ee9be89f0a,
         type: 3}
       propertyPath: m_text
-      value: -6.80
+      value: 0.00
       objectReference: {fileID: 0}
     - target: {fileID: 5856563263039264902, guid: 9eac30bb48f435929b47c0ee9be89f0a,
         type: 3}
@@ -20919,6 +20953,7 @@ SceneRoots:
   - {fileID: 99024646}
   - {fileID: 33647279}
   - {fileID: 216957450}
+  - {fileID: 1006063657}
   - {fileID: 857347307}
   - {fileID: 893750292}
   - {fileID: 139215504}
