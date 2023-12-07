@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CameraManager : MonoBehaviour
 {
     public Transform target;
+    private float minValue = 1;
     public float maxCameraDist;
     public bool isLockedOnTarget = true;
     public Slider zoomSlider;
@@ -32,7 +33,7 @@ public class CameraManager : MonoBehaviour
         this.target = target;
 
         // min/max value config at the top, because it will change slider.value and so call the function ZoomInOutTarget!
-        uiSlider.minValue = 1;
+        uiSlider.minValue = minValue;
         uiSlider.maxValue = GetSliderMax();
 
         // Set initial camera pos
@@ -104,18 +105,19 @@ public class CameraManager : MonoBehaviour
 
     public float GetSliderMax()
     {
-            return CameraToSlider(maxCameraDist);
+        return maxCameraDist;
     }
 
     public float CameraToSlider(float value)
     {
         // return Mathf.Log(value);
-        return value;
+        return maxCameraDist - value + minValue;
     }
 
     public float SliderToCamera(float value)
     {
         // return Mathf.Exp(value);
-        return value;
+
+        return maxCameraDist - value + minValue;
     }
 }
