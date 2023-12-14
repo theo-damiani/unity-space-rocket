@@ -49,14 +49,4 @@ public class LabelPositionManager : MonoBehaviour
 
         drawer.SetShowingY(showingY);
     }
-
-    public void Testtsds()
-    {
-        for (int i = 0; i < uiItems.Count; i++)
-        {
-            UiItems UIitem = uiItems[i];
-            UIitem.IsActive.Value = !UIitem.IsActive.Value;
-        }
-        Init();
-    }
 }
