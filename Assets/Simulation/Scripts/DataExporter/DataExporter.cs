@@ -1,16 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using UnityEngine;
-
-[Serializable]
-public class JsonableListWrapper<T>
-{
-    public List<T> list;
-    public JsonableListWrapper(List<T> list) => this.list = list;
-}
- 
+using UnityEngine; 
 
 [Serializable]
 public struct DataHolder
@@ -36,6 +27,9 @@ public class DataExporter : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private float timeRate;
     [SerializeField] private int maxSize;
+    [SerializeField] private int indexAxisForX = 0;
+    [SerializeField] private int indexAxisForY = 1;
+    [SerializeField] private int indexAxisForZ = 2;
     [SerializeField] private Material outlineMat;
 
     private readonly float defaultTimeRate = 0.1f;
@@ -78,7 +72,7 @@ public class DataExporter : MonoBehaviour
         CancelInvoke(nameof(SaveData));
 
         #if UNITY_WEBGL == true && UNITY_EDITOR == false
-            GameObjectDataRecordingDone(JsonUtility.ToJson(new JsonableListWrapper<string>(listOfJsonData)));
+            GameObjectDataRecordingDone(JsonUtility.ToJson(new <string>(listOfJsonData)));
         #endif
 
         listOfJsonData.Clear();
@@ -89,14 +83,11 @@ public class DataExporter : MonoBehaviour
     {
         if (listOfJsonData.Count <= maxSize)
         {
-            Vector3 posFixed = new(_rigidbody.transform.position.x, _rigidbody.transform.position.z, _rigidbody.transform.position.y);
-            Vector3 rotFixed = new(_rigidbody.transform.rotation.eulerAngles.x, _rigidbody.transform.rotation.eulerAngles.z, _rigidbody.transform.rotation.eulerAngles.y);
-            Vector3 velFixed = new(_rigidbody.velocity.x, _rigidbody.velocity.z, _rigidbody.velocity.y);
             DataHolder data = new(
                     Time.realtimeSinceStartup - timeAtStart,
-                    posFixed,
-                    rotFixed,
-                    velFixed
+                    SwitchComponentsAxis(_rigidbody.transform.transform.position),
+                    SwitchComponentsAxis(_rigidbody.transform.rotation.eulerAngles),
+                    SwitchComponentsAxis(_rigidbody.velocity)
                 );
 
             listOfJsonData.Add(JsonUtility.ToJson(data));
@@ -113,5 +104,10 @@ public class DataExporter : MonoBehaviour
         {
             outlineMat.SetFloat("_Thickness", thickness);
         }
+    }
+
+    private Vector3 SwitchComponentsAxis(Vector3 components)
+    {
+        return new Vector3(components[indexAxisForX], components[indexAxisForY], components[indexAxisForZ]);
     }
 }

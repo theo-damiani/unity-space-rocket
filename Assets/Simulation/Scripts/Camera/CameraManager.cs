@@ -10,12 +10,18 @@ public class CameraManager : MonoBehaviour
     public float maxCameraDist;
     public bool isLockedOnTarget = true;
     public Slider zoomSlider;
+    public Vector3Reference distanceToTarget;
 
     private Vector3 initOffsetToTarget;
-    private Vector3 distanceToTarget;
     private Vector3 minDistanceToTarget;
     private Vector3 zoomDirScaled = Vector3.zero;
     private Vector3 previousTargetPos;
+
+    private bool isTopDown;
+    private Vector3 initMinDistanceToTarget;
+    private Vector3 topDownMinDistanceToTarget;
+    private Quaternion previousRotation;
+
 
     void Start()
     {
@@ -45,19 +51,23 @@ public class CameraManager : MonoBehaviour
         float initOffsetClamped = Mathf.Clamp(initOffsetToTarget.magnitude, minDistanceToObject, GetSliderMax());
         initOffsetToTarget = initOffsetToTarget.normalized*initOffsetClamped;
 
-        distanceToTarget = initOffsetToTarget;
+        distanceToTarget.Value = initOffsetToTarget;
         minDistanceToTarget = (initPos - target.localPosition).normalized * minDistanceToObject;
         uiSlider.SetValueWithoutNotify(CameraToSlider(initOffsetToTarget.magnitude));
         zoomDirScaled = minDistanceToTarget * initOffsetToTarget.magnitude;
 
         zoomSlider = uiSlider;
+
+        // For camera rotation on drag
+        initMinDistanceToTarget = minDistanceToTarget;
+        topDownMinDistanceToTarget = Vector3.up*minDistanceToTarget.magnitude;
     }
 
     void LateUpdate()
     {
         if (isLockedOnTarget)
         {
-            gameObject.transform.localPosition = target.localPosition + distanceToTarget;
+            gameObject.transform.localPosition = target.localPosition + distanceToTarget.Value;
             previousTargetPos = target.localPosition;
         }
     }
@@ -67,7 +77,7 @@ public class CameraManager : MonoBehaviour
         zoomDirScaled = minDistanceToTarget * SliderToCamera(value);
         if (isLockedOnTarget)
         {
-            distanceToTarget = zoomDirScaled;
+            distanceToTarget.Value = zoomDirScaled;
         }
         else
         {
@@ -85,7 +95,7 @@ public class CameraManager : MonoBehaviour
         }
         else
         {
-            distanceToTarget = zoomDirScaled;
+            distanceToTarget.Value = zoomDirScaled;
         }
     }
 
@@ -99,7 +109,7 @@ public class CameraManager : MonoBehaviour
         }
         else
         {
-            distanceToTarget = zoomDirScaled;
+            distanceToTarget.Value = zoomDirScaled;
         }
     }
 
@@ -119,5 +129,29 @@ public class CameraManager : MonoBehaviour
         // return Mathf.Exp(value);
 
         return maxCameraDist - value + minValue;
+    }
+    public Vector3 GetDistanceToTarget()
+    {
+        return distanceToTarget.Value;
+    }
+
+    public void ToggleTopDown()
+    {
+        isTopDown = !isTopDown;
+
+        if (isTopDown) 
+        {
+            previousRotation = transform.localRotation;
+
+            distanceToTarget.Value = Vector3.up*distanceToTarget.Value.magnitude;
+            minDistanceToTarget = topDownMinDistanceToTarget;
+            transform.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
+        }
+        else
+        {
+            distanceToTarget.Value = initMinDistanceToTarget*distanceToTarget.Value.magnitude;
+            minDistanceToTarget = initMinDistanceToTarget;
+            transform.localRotation = previousRotation;
+        }
     }
 }

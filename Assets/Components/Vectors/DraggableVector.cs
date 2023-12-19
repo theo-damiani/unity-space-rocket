@@ -15,6 +15,7 @@ public class DraggableVector : Vector
     [SerializeField] private Vector3 customPlaneCenter;
     [SerializeField] private Vector3 customPlaneNormal;
     [field: SerializeField] public bool VectorIsOnlyScalable {get; set;} = false;
+    [SerializeField] private Vector3Reference DragDirectionIfOnlyScalable;
 
     [Header("Sticky Point")]
     public bool useStickyPoint;
@@ -24,6 +25,11 @@ public class DraggableVector : Vector
     [Header("Sticky Directions")]
     public bool useStickyDirections;
     public List<Vector3> stickyDirections;
+
+    [Header("Head Sticky Point")]
+    public BoolReference useStickyPointHead;
+    public Vector3Reference stickyPointHead;
+    public float stickyPointRadiusHead = 0.5f;
 
     [Header("Magnitude")]
     public bool clampMagnitude;
@@ -57,14 +63,18 @@ public class DraggableVector : Vector
 
         Redraw();
 
-        VectorClickZone.OnZoneMouseDown += HandleZoneMouseDown;
-        VectorClickZone.OnZoneMouseUp += HandleZoneMouseUp;
+        headClickZone.OnZoneMouseDown += HandleZoneMouseDown;
+        tailClickZone.OnZoneMouseDown += HandleZoneMouseDown;
+        headClickZone.OnZoneMouseUp += HandleZoneMouseUp;
+        tailClickZone.OnZoneMouseUp += HandleZoneMouseUp;
     }
 
     private void OnDisable()
     {
-        VectorClickZone.OnZoneMouseDown -= HandleZoneMouseDown;
-        VectorClickZone.OnZoneMouseUp -= HandleZoneMouseUp;
+        headClickZone.OnZoneMouseDown -= HandleZoneMouseDown;
+        tailClickZone.OnZoneMouseDown -= HandleZoneMouseDown;
+        headClickZone.OnZoneMouseUp -= HandleZoneMouseUp;
+        tailClickZone.OnZoneMouseUp -= HandleZoneMouseUp;
     }
 
     public void HandleZoneMouseDown(VectorClickZone clickZone)
@@ -162,9 +172,18 @@ public class DraggableVector : Vector
                     // Update components
                     Vector3 newComponents = hitPoint - transform.position;
 
+
                     if (VectorIsOnlyScalable)
                     {
-                        newComponents = Vector3.Project(newComponents, components.Value);
+                        newComponents = Vector3.Project(newComponents, DragDirectionIfOnlyScalable.Value);
+                    }
+
+                    if (useStickyPointHead.Value)
+                    {
+                        if (Vector3.Distance(newComponents, stickyPointHead.Value) <= stickyPointRadiusHead)
+                        {
+                            newComponents = stickyPointHead.Value;
+                        }
                     }
 
                     // Snap the direction
@@ -283,5 +302,15 @@ public class DraggableVector : Vector
     public bool IsDragged()
     {
         return draggingHead | draggingTail;
+    }
+
+    public VectorClickZone GetHeadClickZone()
+    {
+        return headClickZone;
+    }
+
+    public VectorClickZone GetTailClickZone()
+    {
+        return tailClickZone;
     }
 }

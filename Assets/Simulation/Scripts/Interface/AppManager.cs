@@ -209,7 +209,7 @@ public class AppManager : Singleton<AppManager>
             metaPanel.gameObject.SetActive(true);
             cameraControls.GetComponent<RectTransform>().anchoredPosition = new Vector2(25, -110);
         }
-        velocityLabel.GetComponent<VectorLabel>().SetSpriteOrientation();
-        thrustShowLabel.GetComponent<VectorLabel>().SetSpriteOrientation();
+        velocityLabel.GetComponent<VectorLabel>().UpdateSprite();
+        thrustShowLabel.GetComponent<VectorLabel>().UpdateSprite();
     }
 }
