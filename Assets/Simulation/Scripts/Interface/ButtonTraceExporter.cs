@@ -37,7 +37,7 @@ public class ButtonTraceExporter : AnalyticsExporter
         }
     }
 
-    private void CreatAndSendNewTrace()
+    public void CreatAndSendNewTrace()
     {
         ButtonUITrace newUserTrace = new(Math.Round(Time.timeSinceLevelLoadAsDouble, 2), button.gameObject.name, UnityActionType.Click, "");
 

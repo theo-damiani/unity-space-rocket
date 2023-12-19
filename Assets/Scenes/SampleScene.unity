@@ -1165,6 +1165,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2011262811}
+        m_TargetAssemblyTypeName: ButtonTraceExporter, Assembly-CSharp
+        m_MethodName: CreatAndSendNewTrace
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   responseOnKeyUp:
     m_PersistentCalls:
       m_Calls:
@@ -9202,6 +9214,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1010686493}
+        m_TargetAssemblyTypeName: ButtonTraceExporter, Assembly-CSharp
+        m_MethodName: CreatAndSendNewTrace
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   responseOnKeyUp:
     m_PersistentCalls:
       m_Calls: []
@@ -9237,7 +9261,6 @@ GameObject:
   - component: {fileID: 1010686489}
   - component: {fileID: 1010686488}
   - component: {fileID: 1010686487}
-  - component: {fileID: 1010686486}
   - component: {fileID: 1010686485}
   - component: {fileID: 1010686484}
   - component: {fileID: 1010686483}
@@ -9301,19 +9324,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 7176590249131423785}
---- !u!114 &1010686486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1010686481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f6841103a957bbb0914b8d3fa0074d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 4757408488907325079}
 --- !u!114 &1010686487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17709,6 +17719,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &2011262810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2011262812}
+  - component: {fileID: 2011262811}
+  m_Layer: 0
+  m_Name: ThrustButtonExporter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2011262811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011262810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6841103a957bbb0914b8d3fa0074d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 4757408488907325079}
+--- !u!4 &2011262812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011262810}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!21 &2036674112
 Material:
   serializedVersion: 8
@@ -21382,6 +21437,7 @@ SceneRoots:
   - {fileID: 216957450}
   - {fileID: 1006063657}
   - {fileID: 857347307}
+  - {fileID: 2011262812}
   - {fileID: 1010686495}
   - {fileID: 893750292}
   - {fileID: 139215504}
