@@ -72,7 +72,7 @@ public class DataExporter : MonoBehaviour
         CancelInvoke(nameof(SaveData));
 
         #if UNITY_WEBGL == true && UNITY_EDITOR == false
-            GameObjectDataRecordingDone(JsonUtility.ToJson(new <string>(listOfJsonData)));
+            GameObjectDataRecordingDone(JsonUtility.ToJson(new JsonableListWrapper<string>(listOfJsonData)));
         #endif
 
         listOfJsonData.Clear();
